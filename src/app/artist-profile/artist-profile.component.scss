@@ -1,0 +1,122 @@
+@import "../../styles";
+
+* {
+
+  align-items: center;
+  justify-items: center;
+  background-color: $bgColor;
+
+  font-family: 'Contrail One', cursive;
+  font-weight: 500;
+}
+
+
+.header{
+  width: 100%;
+  max-height: 450px;
+
+}
+.profile-pic{
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  filter: brightness(60%);
+
+}
+
+.name{
+  position: absolute;
+  margin: -150px 0px 0px 15%;
+  background: none;
+
+  letter-spacing: -6px;
+  font-size: 750%;
+  color: white;
+}
+
+
+
+.navbar {
+
+  display:flex;
+  align-items: center;
+  padding: 1% 0px 1% 14.2%;
+
+
+}
+
+li, a, button {
+  letter-spacing: -1.1px;
+  font-family: 'Contrail One', cursive;
+  font-weight: 500;
+  font-size: 1.4em;
+  color: $cian;
+  text-decoration: none;
+}
+
+
+.nav-links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav-links li a:hover {
+  color: white;
+}
+
+.nav-links li {
+  justify-items: center;
+  display: inline-block;
+  padding: 0.5% 20px;
+
+}
+
+
+
+.dropbtn {
+  background-color: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  &:hover {color: white}
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: none;
+  min-width: 160px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0px;
+  background: none;
+  font-size: 1.1em;
+  color: $cian;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-icon{
+  width: 10%;
+  padding-bottom: 10%;
+}
+
+.dropdown-content a:hover {color: $cian}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+
+
+

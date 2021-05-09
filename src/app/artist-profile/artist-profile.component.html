@@ -1,0 +1,41 @@
+<!--Header-->
+<div class="row">
+  <div class="header">
+    <img class="profile-pic" src="https://1.bp.blogspot.com/-es43ATUYtUY/Xxg0zSwV06I/AAAAAAAARpI/EKvHgEyBvM8iZC1ZOx8Uge2R0udUfqjuACLcBGAsYHQ/s1600/los%2Bestanques.jpg" alt="Profile Pic">
+    <h1 class="name">Los estanques</h1>
+  </div>
+</div>
+
+<!--Profile Nav-bar-->
+
+<nav class="navbar navbar-expand-md sticky-top">
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed" aria-controls="collapseExample">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapseExample" [ngbCollapse]="navbarCollapsed">
+
+    <ul class="nav-links navbar-nav">
+      <li class="nav-item dropdown">
+        <div class="dropdown">
+          <button class="dropbtn">Información</button>
+          <div class="dropdown-content">
+            <a href="artist">Biografía</a>
+            <a routerLink="members" routerLinkActive="active">Miembros</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link" routerLink="discography" routerLinkActive="active">Discografía</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="contact" routerLinkActive="active">Contacto</a></li>
+    </ul>
+
+  </div>
+
+</nav>
+
+<!--Profile Nav-bar-->
+
+<router-outlet></router-outlet>
+
+
+
