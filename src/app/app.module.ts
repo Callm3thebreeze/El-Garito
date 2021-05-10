@@ -10,9 +10,10 @@ import { CoverComponent } from './cover/cover.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SearchComponent } from './search/search.component';
 import { ArtistProfileComponent } from './artist-profile/artist-profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
       NavBarComponent,
       FooterComponent,
@@ -25,6 +26,7 @@ import { ArtistProfileComponent } from './artist-profile/artist-profile.componen
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

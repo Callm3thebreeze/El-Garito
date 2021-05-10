@@ -8,7 +8,9 @@
 
 <!--Profile Nav-bar-->
 
-<nav class="navbar navbar-expand-md sticky-top">
+
+
+<nav class="navbar navbar-expand-md">
   <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed" aria-controls="collapseExample">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -35,7 +37,46 @@
 
 <!--Profile Nav-bar-->
 
-<router-outlet></router-outlet>
+
+<div class="body row">
+
+  <div class="dinamic-content col">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="cards col">
+
+      <div class="concerts">
+        <h1 class ="card-title">Eventos</h1>
+        <hr size=5 color="white">
+      </div>
+
+      <div class="social">
+        <h1 class ="card-title">Enlaces</h1>
+        <hr size=5 color="white">
+          <div class="links-container">
+          <a class="card-link" *ngFor="let network of socialNetworks" href="{{network.link}}">
+            <fa-icon [icon]="network.icon" size="2x"></fa-icon> &nbsp;
+            {{network.title}}<br>
+          </a>
+        </div>
+      </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
