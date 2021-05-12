@@ -35,10 +35,10 @@
 
 </nav>
 
-<!--Profile Nav-bar-->
 
+<!--Profile Cards-->
 
-<div class="body row">
+<div class="body row align-items-start">
 
   <div class="dinamic-content col">
     <router-outlet></router-outlet>
@@ -54,10 +54,19 @@
         <h1 class ="card-title">Enlaces</h1>
         <hr size=5 color="white">
           <div class="links-container">
-          <a class="card-link" *ngFor="let network of socialNetworks" href="{{network.link}}">
-            <fa-icon [icon]="network.icon" size="2x"></fa-icon> &nbsp;
-            {{network.title}}<br>
-          </a>
+              <div class="link-box" *ngFor="let network of socialNetworks">
+                <div class="left-item">
+                  <a class="card-link"  href="{{network.link}}">
+                    <fa-icon [icon]="network.icon" size="2x"></fa-icon>
+                  </a>
+                </div>
+                <div class="right-item">
+                  <a class="card-link"  href="{{network.link}}">
+                    {{network.title}}
+                  </a>
+                </div>
+
+            </div>
         </div>
       </div>
 

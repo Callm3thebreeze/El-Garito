@@ -112,24 +112,28 @@
   display: block;
 }
 
-
+//Profile Body
 
 .body{
   padding: 75px 12% 150px 12%;
 }
+.body .row{
+  align-content: initial;
+}
+
 
 .dinamic-content{
-  min-width: 800px;
+  min-width: 65%;
 
 }
 
 .cards{
-
+  margin: 0 auto;
+  padding-top: 0px;
   background-color: none;
   color: white;
   font-size: 1.6em;
   letter-spacing: -1.1px;
-
 
 
   .card-title{
@@ -137,9 +141,9 @@
 
   }
 
-
-
   .concerts{
+    max-width: 400px;
+    min-width: 300px;
     min-height: 300px;
     padding: 8%;
     margin-bottom: 5%;
@@ -149,6 +153,8 @@
   }
 
   .social{
+    max-width: 400px;
+    min-width: 300px;
     min-height: 300px;
     padding: 8%;
     border-radius: 8px;
@@ -156,17 +162,30 @@
 
     .links-container{
       display: flex;
+      margin-left: 30%;
       flex-direction: column;
-      justify-content: right;
+      align-items: flex-start;
 
+      .link-box{
+        display: flex;
+        margin:3%;
+
+        .left-item{
+          margin-right: 10%;
+
+        }
+        .right-item{
+
+        }
+
+        .card-link{
+          color: white;
+        }
+
+      }
     }
 
 
-    .card-link{
-      margin: 5% 0% 5% 0%;
-      justify-content: right;
-      color: white;
-    }
 
   }
 }
