@@ -14,24 +14,22 @@
   background-color: $bgColor;
 }
 
-
 .header{
   width: 100%;
   max-height: 450px;
-
 }
+
 .profile-pic{
   position: relative;
   width: 100%;
   max-height: 400px;
   object-fit: cover;
   filter: brightness(60%);
-
 }
 
 .name{
   position: absolute;
-  margin: -150px 0px 0px 15%;
+  margin: -150px 0px 0px 11.5%;
   background: none;
 
   letter-spacing: -6px;
@@ -40,12 +38,11 @@
 }
 
 
-
+//Profile Navbar
 .navbar {
-
   display:flex;
   align-items: center;
-  padding: 1% 0px 1% 14.2%;
+  padding: 1% 0px 1% 10.5%;
   background-color: $bgColor;
 
   li, a, button {
@@ -56,9 +53,7 @@
     color: $cian;
     text-decoration: none;
   }
-
 }
-
 
 .nav-links li a {
   transition: all 0.3s ease 0s;
@@ -72,10 +67,7 @@
   justify-items: center;
   display: inline-block;
   padding: 0.5% 20px;
-
 }
-
-
 
 .dropbtn {
   background: none;
@@ -92,7 +84,6 @@
   position: absolute;
   background-color: none;
   min-width: 160px;
-
 }
 
 /* Links inside the dropdown */
@@ -102,10 +93,9 @@
   background: none;
   font-size: 1.1em;
   color: $cian;
-  padding: 12px 16px;
+  padding: 2px 10px;
   text-decoration: none;
   display: block;
-
 }
 
 .dropdown:hover .dropdown-content {
@@ -113,7 +103,6 @@
 }
 
 //Profile Body
-
 .body{
   padding: 75px 12% 150px 12%;
 }
@@ -121,12 +110,11 @@
   align-content: initial;
 }
 
-
 .dinamic-content{
   min-width: 65%;
-
 }
 
+//Cards column
 .cards{
   margin: 0 auto;
   padding-top: 0px;
@@ -137,7 +125,7 @@
 
 
   .card-title{
-    font-size: 1.1em;
+    font-size: 1.2em;
 
   }
 
@@ -145,7 +133,7 @@
     max-width: 400px;
     min-width: 300px;
     min-height: 300px;
-    padding: 8%;
+    padding: 6%;
     margin-bottom: 5%;
     border-radius: 8px;
     background-color: $g-red;
@@ -156,7 +144,7 @@
     max-width: 400px;
     min-width: 300px;
     min-height: 300px;
-    padding: 8%;
+    padding: 6%;
     border-radius: 8px;
     background-color: $g-red;
 
@@ -168,7 +156,7 @@
 
       .link-box{
         display: flex;
-        margin:3%;
+        margin: 3%;
 
         .left-item{
           margin-right: 10%;
@@ -184,9 +172,6 @@
 
       }
     }
-
-
-
   }
 }
 

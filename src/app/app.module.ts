@@ -1,3 +1,5 @@
+import { DiscographyComponent } from './artist-profile/discography/discography.component';
+import { MembersComponent } from './artist-profile/members/members.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SearchComponent } from './search/search.component';
 import { ArtistProfileComponent } from './artist-profile/artist-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       CoverComponent,
       NotFoundComponent,
       SearchComponent,
-      ArtistProfileComponent
+      ArtistProfileComponent,
+      MembersComponent,
+      DiscographyComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

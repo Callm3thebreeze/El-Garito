@@ -1,3 +1,35 @@
-<p>
-  members works!
-</p>
+<div class="members">
+
+  <div class="row">
+    <div class="title">
+        <h1>Miembros</h1>
+
+    </div>
+    <hr/>
+  </div>
+
+  <div class="row" >
+
+    <div class="col-12" *ngFor="let member of members">
+      <div class="person">
+        <div class="row">
+
+              <div class="col-12 col-md-4">
+                <img src={{member.picture}} alt="Un Personaje">
+              </div>
+              <div class="info col-12 col-md-8">
+                <div class="name">
+                  {{member.name}}
+                </div>
+                <div class="role">
+                  {{member.role}}
+                </div>
+              </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

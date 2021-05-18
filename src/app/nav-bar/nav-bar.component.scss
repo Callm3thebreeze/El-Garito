@@ -1,12 +1,6 @@
 @import "../../styles";
 
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
-}
 
 a.active {
   color: #FF181E;
@@ -16,7 +10,7 @@ a.active {
 
   display:flex;
   align-items: center;
-  padding:  1%;
+  padding:  0.5%;
   background-color: #0D0D0D;
 
 }
@@ -25,7 +19,7 @@ li, a, button {
   letter-spacing: -1.8px;
   font-family: 'Contrail One', cursive;
   font-weight: 500;
-  font-size: 1.45em;
+  font-size: 1.3em;
   color: white;
   text-decoration: none;
 }
@@ -34,7 +28,7 @@ li, a, button {
 .logo {
   width: 17%;
   min-width: 200px;
-  max-width: 300px;
+  max-width: 230px;
   margin: 0px 30px 0px 30px;
   cursor: pointer;
   //margin-right auto
@@ -69,15 +63,14 @@ li, a, button {
   margin-left: auto;
   input {
       border: 0px;
-      padding: 5px 10px 5px 20px;
-      font-size: 20px;
+      padding: 5px 5px 5px 20px;
+      font-size: 15px;
       border-radius: 20px;
       outline: none;
       width: calc(100% - 75px);
   }
   .btn-search {
 
-      margin-right: 0px;
       border-radius: 30px;
       width: 50px;
       height: 35px;
@@ -86,9 +79,9 @@ li, a, button {
       }
       .icon {
         display:flex;
-        margin-top: -4px;
+        margin-top: -2px;
         max-width: auto;
-        width: 33px;
+        width: 25px;
         height: auto;
       }
     }
@@ -97,12 +90,12 @@ li, a, button {
 .user-icons {
   display: flex;
   align-items: center;
-  margin: 20px;
+  margin: 0px 30px 0px 30px;
 
 }
 
 .icon2 {
-  max-height: 50px;
+  max-height: 45px;
   margin: 5px;
 
 }

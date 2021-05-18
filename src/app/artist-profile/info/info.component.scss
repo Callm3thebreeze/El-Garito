@@ -5,7 +5,6 @@
   align-items: center;
   justify-items: left;
 
-
   background-color: #1A1A1A;
 
   font-family: 'Roboto', sans-serif;
@@ -30,7 +29,7 @@
   }
 
   .info{
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
 
   .genre{
@@ -54,4 +53,11 @@
     }
 
   }
+}
+
+
+hr {
+  margin-top: 3%;
+  margin-bottom: 5%;
+  border-top: 4px solid rgb(255, 255, 255);
 }

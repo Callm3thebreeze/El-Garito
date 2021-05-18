@@ -1,3 +1,44 @@
-<p>
-  discography works!
-</p>
+<div class="discography">
+
+  <div class="row">
+    <div class="title">
+        <h1>Discografía</h1>
+    </div>
+    <hr/>
+  </div>
+
+  <div class="row" >
+
+    <div class="col-12" *ngFor="let album of albums; index as i">
+
+      <div class="person">
+        <div class="row">
+              <div class="col-md-5">
+                <img  (click)="showChek[i] = !showChek[i]" src={{album.picture}} alt="Un Disco">
+              </div>
+              <div class="info  col-md-7">
+                <div class="name">
+                  {{album.name}}
+                </div>
+                <div class="date">
+                  {{album.date}}
+                </div>
+                <div class="date">
+                 <p>{{album.songs.length}} canciones</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 songs" *ngIf="showCheck[i]">
+          <div *ngFor="let song of album.songs">
+            <p>{{album.songs.indexOf(song)+1}}. {{song}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>
+

@@ -56,12 +56,12 @@
           <div class="links-container">
               <div class="link-box" *ngFor="let network of socialNetworks">
                 <div class="left-item">
-                  <a class="card-link"  href="{{network.link}}">
+                  <a class="card-link"  href="{{network.link}}" target="_blank">
                     <fa-icon [icon]="network.icon" size="2x"></fa-icon>
                   </a>
                 </div>
                 <div class="right-item">
-                  <a class="card-link"  href="{{network.link}}">
+                  <a class="card-link"  href="{{network.link}}" target="_blank">
                     {{network.title}}
                   </a>
                 </div>
