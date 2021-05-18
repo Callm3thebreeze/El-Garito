@@ -20,15 +20,6 @@
     }
 }
 
-.titles{
-
-  letter-spacing: -1.8px;
-  font-family: 'Contrail One', cursive;
-  font-weight: 500;
-  font-size: 1.7em;
-  color: white;
-  text-decoration: none;
-}
 
 .info {
 
@@ -36,22 +27,32 @@
   font-size: 1.3em;
   color: white;
   text-decoration: none;
+
+  h1{
+    letter-spacing: -1.8px;
+    font-family: 'Contrail One', cursive;
+    font-weight: 500;
+    font-size: 1.6em;
+    color: white;
+    text-decoration: none;
+  }
 }
 
-.logo {
 
-  max-width: 250px;
-  min-width: 150px;
-  padding: 30px 0px 0px 0px;
-  margin-right: -150px;
+.icons{
+
+  margin-top: 5%;
+  .logo {
+
+    max-width: 250px;
+    min-width: 150px;
+  }
+
+  .social {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.social {
-  max-width: 200px;
-  min-width: 150px;
-  padding: 30px 0px 0px 0px;
-  margin-left: -150px;
-  margin-bottom: -150px;
-
-}
 

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  public navbarCollapsed = true;
+
+
+  faInstagram = faInstagram;
+  faFacebook = faFacebook;
+  faYoutube = faYoutube;
+  faTwitter = faTwitter;
 
 
   constructor() { }

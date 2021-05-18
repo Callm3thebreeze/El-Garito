@@ -14,9 +14,10 @@ import { SearchComponent } from './search/search.component';
 import { ArtistProfileComponent } from './artist-profile/artist-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { ConcertsComponent } from './concerts/concerts.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       NavBarComponent,
       FooterComponent,
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
       SearchComponent,
       ArtistProfileComponent,
       MembersComponent,
-      DiscographyComponent
+      DiscographyComponent,
+      ConcertsComponent
    ],
   imports: [
     BrowserModule,

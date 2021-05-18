@@ -43,7 +43,7 @@ export class ArtistProfileComponent implements OnInit {
       title: "Youtube"
     },
     {
-      link: "https://open.spotify.com/artist/2viZosiTrNf88YlPRVHkos?si=5u599AduQmyu6K3PS5CvwA",
+      link: "https://www.instagram.com/los_estanques/?hl=es",
       icon: faInstagram,
       title: "Instagram"
     },

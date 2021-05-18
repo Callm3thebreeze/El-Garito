@@ -29,13 +29,15 @@
 
 .name{
   position: absolute;
-  margin: -150px 0px 0px 11.5%;
+  margin: -150px 0px 1px 11.5%;
   background: none;
 
-  letter-spacing: -6px;
-  font-size: 750%;
+  letter-spacing: -8px;
+  font-size: 7em;
   color: white;
 }
+
+
 
 
 //Profile Navbar
@@ -177,7 +179,28 @@
 
 
 
+@media (max-width: 640px)
+{
+   .name
+   {
+       font-size: 4em;
+       letter-spacing: -4px;
+   }
 
+
+
+   .dropdown-content{
+      position: relative;
+      a{
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+      }
+
+   }
+
+
+  }
 
 
 
