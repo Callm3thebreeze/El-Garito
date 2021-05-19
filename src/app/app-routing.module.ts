@@ -1,3 +1,4 @@
+import { ConcertsComponent } from './concerts/concerts.component';
 import { ContactComponent } from './artist-profile/contact/contact.component';
 import { DiscographyComponent } from './artist-profile/discography/discography.component';
 import { MembersComponent } from './artist-profile/members/members.component';
@@ -12,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 const routes: Routes = [
  { path: "", component: CoverComponent, pathMatch: "full"},
  { path: "search", component: SearchComponent },
+ { path: "events", component: ConcertsComponent},
  { path: "artist", component: ArtistProfileComponent, children:
   [
     { path: "", component: InfoComponent, pathMatch: "full"},

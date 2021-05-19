@@ -1,0 +1,76 @@
+@import "../../styles";
+
+* {
+
+  align-items: center;
+  justify-items: center;
+
+  background-color: $bgColor;
+
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  text-decoration: none;
+  text-align: left;
+
+}
+
+.events {
+  padding: 75px 15% 150px 15%;
+}
+
+.title-box{
+
+  .title, .search-item{
+  font-family: 'Contrail One', cursive;
+  font-weight: 500;
+  }
+
+  .title{
+
+    letter-spacing: -6px;
+    font-size: 5em;
+    color: $g-red;
+  }
+
+  .search-item{
+    letter-spacing: -4.5px;
+    font-size: 4em;
+
+  }
+}
+
+
+.cartoon{
+  img{
+    max-width: 100%;
+  }
+}
+
+
+.concert-card{
+
+  .month{
+    font-family: 'Contrail One', cursive;
+    font-weight: 500;
+    font-size: 1.5em;
+    letter-spacing: -2px;
+    color: $g-red;
+  }
+
+  .dates{
+    font-weight: 500;
+    font-size: 1.2em;
+
+  }
+}
+
+.gap{
+  margin-top: 6%;
+}
+
+hr {
+  margin-top: 3%;
+  margin-bottom: 5%;
+  border-top: 4px solid $g-red;
+}
+

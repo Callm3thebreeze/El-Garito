@@ -5,37 +5,21 @@
     </div>
 
     <div class="row">
-      <div class="col">
+      <div class="selector col-12 col-md-6">
         <select required name="provincia" class="provincias form-control">
           <option value="">Elige una provincia</option>
           <option *ngFor="let provincia of provincias">{{provincia}}</option>
-
+        </select>
+        <select required name="genero" class="provincias form-control">
+          <option value="">Elige un género</option>
+          <option *ngFor="let genre of genres">{{genre}}</option>
         </select>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col"></div>
       <div class="col d-none d-lg-block">
         <img class="map" src="../../assets/img/spain_neon2.png" alt="Spain Map">
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <select required name="provincia" class="provincias form-control">
-          <option value="">Elige un género</option>
-          <option *ngFor="let genre of genres">{{genre}}</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col"></div>
-      <div class="col d-none d-lg-block">
-        <img class="cartoon" src="../../assets/img/paya4_neonB.png" alt="cartoon">
-      </div>
-    </div>
 
     <div class="results row">
 

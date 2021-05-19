@@ -1,3 +1,39 @@
-<p>
-  concerts works!
-</p>
+<div class="events">
+
+  <div class="row">
+    <div class="col-6">
+      <div class="title-box">
+        <div class="title">
+          EVENTOS
+        </div>
+        <div class="search-item">
+          Los estanques
+        </div>
+      </div>
+
+    </div>
+    <div class="col-6">
+      <div class="cartoon">
+        <img src="../../assets/img/paya4_neonB.png" alt="cartoon">
+      </div>
+    </div>
+  </div>
+
+  <div class="row gap">
+    <div *ngFor="let concert of concerts" class="col-sm-6 col-md-4">
+      <div class="concert-card">
+        <div class="month">
+          {{concert.month}}
+          <hr/>
+        </div>
+        <div class="dates">
+          jueves 25 - Sala Clandestino, Albacete <br>
+          jueves 25 - Sala Clandestino, Albacete <br>
+          jueves 25 - Sala Clandestino, Albacete <br>
+          jueves 25 - Sala Clandestino, Albacete <br>
+          jueves 25 - Sala Clandestino, Albacete <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

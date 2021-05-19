@@ -95,3 +95,38 @@
   font-size: 1.2em;
 
 }
+
+
+.boton{
+  display:flex;
+  justify-content: center;
+  margin: 10% 0%;
+
+  .login-btn, .signup-btn{
+    width: 300px;
+    height: 100px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: -1.5px;
+    font-family: 'Contrail One', cursive;
+    font-weight: 500;
+  }
+
+  .login-btn{
+    background: url("../../assets/img/iniciar sesion.png") center;
+    background-size: 110%;
+
+
+  }
+
+  .signup-btn{
+    background: url("../../assets/img/regustro.png") center;
+    background-size: 110%;
+  }
+
+
+}
