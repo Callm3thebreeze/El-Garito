@@ -1,7 +1,7 @@
 <div class="events">
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="title-box">
         <div class="title">
           EVENTOS
@@ -9,10 +9,11 @@
         <div class="search-item">
           Los estanques
         </div>
+        <input type="text" class="form-control" placeholder="Busca por artista o localización">
       </div>
 
     </div>
-    <div class="col-6">
+    <div class="col d-none d-lg-block">
       <div class="cartoon">
         <img src="../../assets/img/paya4_neonB.png" alt="cartoon">
       </div>
@@ -20,18 +21,17 @@
   </div>
 
   <div class="row gap">
-    <div *ngFor="let concert of concerts" class="col-sm-6 col-md-4">
+    <div *ngFor="let month of months" class="col-sm-6 col-md-4">
       <div class="concert-card">
         <div class="month">
-          {{concert.month}}
+          {{month}}
           <hr/>
         </div>
-        <div class="dates">
-          jueves 25 - Sala Clandestino, Albacete <br>
-          jueves 25 - Sala Clandestino, Albacete <br>
-          jueves 25 - Sala Clandestino, Albacete <br>
-          jueves 25 - Sala Clandestino, Albacete <br>
-          jueves 25 - Sala Clandestino, Albacete <br>
+        <div class="dates" *ngFor="let concert of concerts">
+          <span class="date" *ngIf="month == concert.month">
+            <p>Día {{concert.day}} - {{concert.place}}, {{concert.city}}</p>
+          </span>
+
         </div>
       </div>
     </div>

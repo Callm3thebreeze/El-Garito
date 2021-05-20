@@ -1,3 +1,5 @@
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { DiscographyComponent } from './artist-profile/discography/discography.component';
 import { MembersComponent } from './artist-profile/members/members.component';
 import { NgModule } from '@angular/core';
@@ -13,11 +15,24 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SearchComponent } from './search/search.component';
 import { ArtistProfileComponent } from './artist-profile/artist-profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConcertsComponent } from './concerts/concerts.component';
 
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './services/interceptors/auth-interceptor.service';
+
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+
+
+
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       NavBarComponent,
       FooterComponent,
@@ -27,16 +42,30 @@ import { ConcertsComponent } from './concerts/concerts.component';
       ArtistProfileComponent,
       MembersComponent,
       DiscographyComponent,
-      ConcertsComponent
+      ConcertsComponent,
+      LoginComponent,
+      RegisterComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+    },
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

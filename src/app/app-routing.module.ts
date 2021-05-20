@@ -1,3 +1,6 @@
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 import { ConcertsComponent } from './concerts/concerts.component';
 import { ContactComponent } from './artist-profile/contact/contact.component';
 import { DiscographyComponent } from './artist-profile/discography/discography.component';
@@ -10,8 +13,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 
+import { AuthGuardService } from './services/auth/auth-guard.service';
+
 const routes: Routes = [
  { path: "", component: CoverComponent, pathMatch: "full"},
+ { path: "login", component: LoginComponent},
+ { path: "signup", component: RegisterComponent},
  { path: "search", component: SearchComponent },
  { path: "events", component: ConcertsComponent},
  { path: "artist", component: ArtistProfileComponent, children:
