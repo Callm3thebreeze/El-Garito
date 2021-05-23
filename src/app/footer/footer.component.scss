@@ -56,3 +56,16 @@
 }
 
 
+@media (max-width: 480px)
+{
+  .info {
+
+    font-size: 0.9em;
+
+    h1{
+      letter-spacing: -1.8px;
+      font-size: 1.6em;
+    }
+  }
+
+}

@@ -6,14 +6,17 @@
 
     <div class="row">
       <div class="selector col-12 col-md-6">
-        <select required name="provincia" class="provincias form-control">
+
+        <select required name="provincia" class="filter form-control">
           <option value="">Elige una provincia</option>
           <option *ngFor="let provincia of provincias">{{provincia}}</option>
         </select>
-        <select required name="genero" class="provincias form-control">
+        <select required name="genero" class="filter form-control">
           <option value="">Elige un género</option>
           <option *ngFor="let genre of genres">{{genre}}</option>
         </select>
+        <input type="text" class="filter form-control" placeholder="Nombre de artista">
+        <button type="button" class="btn">¡Dale!</button>
       </div>
       <div class="col d-none d-lg-block">
         <img class="map" src="../../assets/img/spain_neon2.png" alt="Spain Map">

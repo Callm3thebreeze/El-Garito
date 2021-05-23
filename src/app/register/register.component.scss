@@ -1,0 +1,85 @@
+@import "../../styles";
+
+.main-container{
+
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a0a;
+
+
+}
+
+
+.form-singin, .right-col{
+
+  height: 100%;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.left-col{
+  background-color: $not-black;
+  height: 100vh;
+  background-image: url("../../assets/img/login_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.form-floating{
+  padding: 15%;
+
+  .form-control{
+    margin: 2% 0;
+    font-size: 1.3em;
+  }
+}
+
+
+mat-form-field {
+  width: 100%;
+  font-size: 2em;
+}
+
+/* input color class */
+::ng-deep .mat-form-field {
+  .mat-input-element {
+      color: #ffff;
+  }
+  .mat-form-field-label {
+      color: #ffff;
+  }
+  .mat-form-field-underline {
+      background-color: #ffff;
+  }
+  .mat-form-field-ripple {
+      background-color: #ffff;
+  }
+  .mat-form-field-required-marker {
+      color: #ffff;
+  }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+  .mat-form-field-label {
+      color: #ffff;
+  }
+  .mat-form-field-ripple {
+      background-color: #ffff;
+  }
+  .mat-form-field-required-marker {
+      color: #ffff;
+  }
+  .mat-input-element {
+      color: #ffff;
+  }
+}
+
+.btn-lg{
+  color:#ffff;
+  background-color:$cian;
+}
+

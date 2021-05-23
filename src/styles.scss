@@ -38,10 +38,16 @@ $El-Garito-theme: mat-light-theme((
 @import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
 
 $bgColor: #1A1A1A;
+$not-black: #070707;
 $cian:  #15C2A3;
 $g-red: #FF181E;
 
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, sans-serif; }
+html, body {
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  background-color: $bgColor;
+}
+

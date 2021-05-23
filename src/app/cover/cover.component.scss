@@ -16,11 +16,11 @@
 }
 
 .cover {
-  padding: 75px 17% 150px 17%;
+  padding: 5% 17% 7% 17%;
 }
 
 .gap {
-  margin-bottom: 150px;
+  margin-bottom: 22%;
 }
 
 
@@ -31,8 +31,6 @@
   font-size: 1em;
   z-index: 2;
   padding-bottom: 20px;
-
-
 }
 
 
@@ -50,14 +48,56 @@
 
 .main_cartoon {
 
-  max-width: 135%;
+  max-width: 145%;
   z-index: 1;
   margin-left: -25%;
-
 }
 
+.login-text{
+  font-size: 1.8em;
+}
+
+.buttons{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10% 0%;
+
+  .login-btn, .signup-btn{
+    margin: 2%;
+    width: 300px;
+    height: 90px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    letter-spacing: -1.5px;
+    font-size: 1.8em;
+  }
+
+
+  .login-btn{
+    background-color: $cian;
+  }
+
+  .signup-btn{
+    background-color: $g-red;
+  }
+
+  //.login-btn{
+    //background: url("../../assets/img/iniciar sesion.png") center;
+    //background-size: 110%;
+  //}
+
+  //.signup-btn{
+    //background: url("../../assets/img/regustro.png") center;
+    //background-size: 110%;
+  //}
+}
+
+
 .cartoon {
-  max-width: 65%;
+  max-width: 80%;
 }
 
 .red-container{
@@ -73,7 +113,7 @@
   letter-spacing: -2.9px;
   font-family: 'Contrail One', cursive;
   font-weight: 500;
-  font-size: 2.5em;
+  font-size: 2.7em;
   color: #15C2A3;
   margin-bottom: 20px;
 
@@ -84,7 +124,7 @@
   letter-spacing: -2.9px;
   font-family: 'Contrail One', cursive;
   font-weight: 500;
-  font-size: 2.5em;
+  font-size: 2.7em;
   color: #FF181E;
   margin-bottom: 20px;
 
@@ -97,36 +137,83 @@
 }
 
 
-.boton{
-  display:flex;
-  justify-content: center;
-  margin: 10% 0%;
+
+@media (max-width: 800px)
+{
+  .little_title {
+    letter-spacing: 1.9px;
+    font-size: 0.9em;
+  }
+
+
+  .title {
+    font-size: 3.6em;
+    letter-spacing: -4px;
+  }
+
+  .login-text{
+    font-size: 1.1em;
+  }
+
+  .buttons{
 
   .login-btn, .signup-btn{
-    width: 300px;
-    height: 100px;
+
+    width: 180px;
+    height: 60px;
     border-radius: 15px;
-    cursor: pointer;
-    border: none;
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
     letter-spacing: -1.5px;
-    font-family: 'Contrail One', cursive;
-    font-weight: 500;
+    font-size: 1.3em;
+   }
   }
 
-  .login-btn{
-    background: url("../../assets/img/iniciar sesion.png") center;
-    background-size: 110%;
+}
 
 
+@media (max-width: 480px)
+{
+  .little_title {
+    letter-spacing: 1.9px;
+    font-size: 0.9em;
   }
 
-  .signup-btn{
-    background: url("../../assets/img/regustro.png") center;
-    background-size: 110%;
+
+  .title {
+    font-size: 2.7em;
+    letter-spacing: -4px;
   }
 
+  .login-text{
+    font-size: 0.9em;
+  }
+
+  .buttons{
+
+  .login-btn, .signup-btn{
+
+    width: 120px;
+    height: 50px;
+    border-radius: 15px;
+    letter-spacing: -1.5px;
+    font-size: 1em;
+   }
+  }
+
+  .info_title {
+
+    letter-spacing: -2.5px;
+    font-size: 2.2em;
+  }
+
+  .info_title_red {
+
+    letter-spacing: -2.5px;
+    font-size: 2.2em;
+  }
+
+  .info {
+
+    font-size: 0.9em;
+  }
 
 }

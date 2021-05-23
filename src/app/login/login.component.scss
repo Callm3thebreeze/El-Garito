@@ -4,90 +4,111 @@
 
   width: 100vw;
   height: 100vh;
-  background-color: #0a0a0a;
-  display: flex;
-  flex-direction: row;
-
+  background-color: $not-black;
 }
 
-
 .form-singin{
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
-  width: 25%;
+
   padding-top: 5%;
   display: flex;
   flex-direction: column;
   padding-left: 2%;
   padding-right: 2%;
 
+  a{
+    display: flex;
+    justify-content: center;
+
+    .logo{
+        max-width: 80%;
+        margin: 15% 0%;
+      }
+  }
+
+  .btn-lg{
+    color: #ffff;
+    background-color: $cian;
+  }
+
 
 }
 
 .right-col{
-  background-color: #0a0a0a;
+  background-image: url("../../assets/img/login_bg.png");
   height: 100vh;
-  width: 70%;
+
+
 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
+  .form-control{
+    margin: 2% 0;
+    font-size: 1.3em;
+
+
+  }
+
 }
 
-/* .img-login{
-  object-fit: contain
-} */
 
-h3{
-  font-family: 'Roboto', sans-serif;
-  margin: 0 auto;
-  color:white;
-}
 
 mat-form-field {
   width: 100%;
-  font-size: 120%;
+  font-size: 2em;
 }
 
 /* input color class */
 ::ng-deep .mat-form-field {
   .mat-input-element {
-      color: $cian;
+      color: #ffff;
   }
   .mat-form-field-label {
-      color: $g-red;
+      color: #ffff;
   }
   .mat-form-field-underline {
-      background-color: $cian;
+      background-color: #ffff;
   }
   .mat-form-field-ripple {
-      background-color: $cian;
+      background-color: #ffff;
   }
   .mat-form-field-required-marker {
-      color: $cian;
+      color: #ffff;
   }
 }
 
 ::ng-deep .mat-form-field.mat-focused {
   .mat-form-field-label {
-      color: $g-red;
+      color: #ffff;
   }
   .mat-form-field-ripple {
-      background-color: $cian;
+      background-color: #ffff;
   }
   .mat-form-field-required-marker {
-      color: $cian;
+      color: #ffff;
   }
   .mat-input-element {
       color: $cian;
   }
 }
 
-.btn-lg{
-  color:#0a0a0a;
-  font-weight: 700;
-  font-family: 'Roboto', sans-serif;
-  background-color:$cian;
-}
 
+
+@media (max-width: 990px)
+{
+  .form-singin{
+      a{
+      .logo{
+          max-width: 60%;
+          margin: 5% 0%;
+        }
+    }
+
+
+  }
+}

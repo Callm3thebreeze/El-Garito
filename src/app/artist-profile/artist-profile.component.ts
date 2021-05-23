@@ -5,6 +5,7 @@ import { faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faTwitch } from '@fortawesome/free-brands-svg-icons';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class ArtistProfileComponent implements OnInit {
   faFacebook = faFacebook;
   faYoutube = faYoutube;
   faTwitter = faTwitter;
+  faTwitch = faTwitch;
 
   socialNetworks= [
 
@@ -56,6 +58,11 @@ export class ArtistProfileComponent implements OnInit {
       link: "https://twitter.com/Los_Estanques",
       icon: faTwitter,
       title: "Twitter"
+    },
+    {
+      link: "https://twitter.com/Los_Estanques",
+      icon: faTwitch,
+      title: "Twitch"
     },
   ]
 

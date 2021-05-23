@@ -1,0 +1,91 @@
+<div class="main-container">
+  <div class="row">
+    <div class="col d-none d-lg-block">
+      <div class=" left-col text-light">
+
+        <div class="form-floating">
+          <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.username.errors">
+            El usuario no es válido
+          </div>
+          <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.email.errors">
+              El email no es válido
+          </div>
+          <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.password.errors">
+              La constraseña no es válida
+          </div>
+          <div class="form-control is-invalid" role="alert" *ngIf="(isSent && f.confirm_password.errors) || (isSent && errorPass)">
+            La constraseña no coinciden o no es válida
+        </div>
+        <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.location.errors">
+          La localización no es válida
+      </div>
+      </div>
+
+      </div>
+    </div>
+
+      <div class="col-12 col-md-3">
+      <div class="form-singin right-col">
+
+        <!-- <h3 class="mt-5 mb-3">Iniciar Sesión</h3> -->
+        <form [formGroup]="mForm" (ngSubmit)="onSubmit()">
+
+          <div>
+            <mat-form-field>
+              <mat-error *ngIf="isSent && f.artist_name.errors">
+                <strong>Todos los campos son requeridos</strong>
+              </mat-error>
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="artist_name" [ngClass]="{'is-invalid': isSent && f.artist_name.errors}">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Nick de usuario</mat-label>
+              <input matInput type="text" formControlName="username" [ngClass]="{'is-invalid': isSent && f.username.errors}">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>e-mail</mat-label>
+              <input matInput type="text" formControlName="email" [ngClass]="{'is-invalid': isSent && f.email.errors}">
+            </mat-form-field>
+          </div>
+
+
+          <div>
+            <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="password" formControlName="password" [ngClass]="{'is-invalid': isSent && f.password.errors}">
+            </mat-form-field>
+          </div>
+
+
+          <div>
+            <mat-form-field>
+              <mat-label>Confirmar contraseña</mat-label>
+              <input matInput type="text" formControlName="confirm_password" [ngClass]="{'is-invalid': isSent && f.confirm_password.errors}">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Localidad</mat-label>
+              <input matInput type="text" formControlName="location" [ngClass]="{'is-invalid': isSent && f.location.errors}">
+            </mat-form-field>
+          </div>
+
+
+
+        <button class="w-100 btn btn-lg mt-5" type="submit">Crear cuenta</button>
+    </form>
+
+
+    </div>
+
+  </div>
+</div>
+
+</div>

@@ -9,7 +9,6 @@
 
   font-family: 'Roboto', sans-serif;
   color: white;
-  text-decoration: none;
   text-align: left;
 
 }
@@ -42,13 +41,28 @@
 
 .cartoon{
   img{
-    max-width: 100%;
+    max-width: 120%;
+    margin-left: -10%;
+    background: none;
   }
 }
 
-.form-control{
-  margin: 5% 0%;
+.busqueda{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5% 0;
+
+  .form-control{
+    margin-right: 3%;
+  }
+
+  .btn{
+    font-size: 1em;
+    background-color: $g-red;
+  }
 }
+
 
 
 .concert-card{
@@ -82,3 +96,24 @@ hr {
   border-top: 4px solid $g-red;
 }
 
+@media (max-width: 480px)
+{
+  .title-box{
+
+    .title{
+
+      letter-spacing: -4px;
+      font-size: 4.5em;
+      color: $g-red;
+    }
+
+    .search-item{
+      letter-spacing: -2.5px;
+      font-size: 2.5em;
+
+    }
+  }
+
+
+
+}
