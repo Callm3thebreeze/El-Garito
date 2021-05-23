@@ -71,22 +71,23 @@ li, a, button {
       outline: none;
       width: calc(100% - 75px);
   }
-  .btn-search {
+  a{
+    .btn-search {
 
-      border-radius: 30px;
-      width: 20%;
-      height: auto;
-      &:hover {
-          background: rgb(236, 235, 235);
-      }
-      .icon {
-        display:flex;
-        margin-top: -2px;
-        max-width: auto;
-        width: 25px;
+        border-radius: 30px;
         height: auto;
+        &:hover {
+            background: rgb(236, 235, 235);
+        }
+        .icon {
+          display:flex;
+          margin-top: -2px;
+          max-width: auto;
+          width: 25px;
+          height: auto;
+        }
       }
-    }
+  }
 }
 
 .user-icons {

@@ -1,3 +1,4 @@
+import { EmailFormComponent } from './email-form/email-form.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
  { path: "signup", component: RegisterComponent},
  { path: "search", component: SearchComponent },
  { path: "events", component: ConcertsComponent},
+ { path: "email", component: EmailFormComponent},
  { path: "artist", component: ArtistProfileComponent, children:
   [
     { path: "", component: InfoComponent, pathMatch: "full"},

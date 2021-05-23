@@ -1,0 +1,73 @@
+@import "../../styles";
+
+.email-form{
+
+  padding: 5% 12% 7% 12%;
+
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  text-decoration: none;
+  text-align: left;
+
+  h1{
+    font-family: 'Contrail One', cursive;
+    font-weight: 500;
+    font-size: 3em;
+    letter-spacing: -3px;
+    color: $cian;
+    margin-bottom: 5%;
+  }
+
+  p{
+    font-size: 1.2em;
+  }
+
+  .mail-adress{
+    display: flex;
+    align-items: flex-start;
+    margin: 20% 5%;
+
+    .icon{
+      color: $cian;
+      margin-right: 5%;
+    }
+
+    p{
+      font-size: 1.6em;
+    }
+
+  }
+
+  .name-col{
+    padding-right: 2%;
+  }
+
+  .email-col{
+    padding-left: 2%;
+  }
+
+  .label-1{
+    padding-left: 4%;
+  }
+
+  .form-control{
+    margin-bottom: 10%;
+    border-radius: 10px;
+  }
+
+  label{
+    margin: 1% 0%;
+  }
+
+  .btn{
+    background-color: $cian;
+    color: #fff;
+    font-size: 1.2em;
+    width: 35%;
+    border-radius: 10px;
+  }
+
+}
+
+
+

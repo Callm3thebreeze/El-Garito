@@ -28,11 +28,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { EmailFormComponent } from './email-form/email-form.component';
 
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       NavBarComponent,
       FooterComponent,
@@ -44,7 +45,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
       DiscographyComponent,
       ConcertsComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      EmailFormComponent
    ],
   imports: [
     BrowserModule,
