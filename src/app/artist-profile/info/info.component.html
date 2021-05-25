@@ -1,19 +1,73 @@
 <div class="bio">
+
   <div class="title">
-    <h1>Biografía</h1>
-    <hr/>
+    <h1>Biografía &nbsp;&nbsp;&nbsp;<fa-icon *ngIf="canEdit" [icon]="editIcon" (click)="openModalForm(biocontent)"></fa-icon></h1>
+    <hr size=5 color="white">
   </div>
   <div class="info">
-    {{info}}
+    {{info?.bio}}
   </div>
   <div class="genre">
     <div class="genre-title">
-      <h1>Género:</h1>
+      <h1>Género(s): &nbsp;&nbsp;&nbsp;<fa-icon *ngIf="canEdit" [icon]="editIcon" size=1x (click)="openModalForm(genrescontent)"></fa-icon></h1>
     </div>
     <div class="genre-selection">
-      Pop, Rock, Psicodélico
+      {{genrestoShow}}
+    </div>
+  </div>
+
+
+
+
+
+
+    <ng-template #genrescontent let-modal>
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Seleccionar géneros</h4>
+        <button type="button" class="btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <fa-icon  [icon]="closeModalIcon" size=2x ></fa-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      <mat-form-field  class="example-full-width">
+        <mat-label>Géneros</mat-label>
+        <mat-select [(ngModel)]="genresToSubmit" ngDefaultControl multiple>
+          <mat-option *ngFor="let genre of genresList" [value]="genre">{{genre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-success genre-btn" (click)="sendData()">Guardar</button>
+      </div>
+
+    </ng-template>
+
+
+
+
+  <ng-template #biocontent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Editar Biografía</h4>
+      <button type="button" class="btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <fa-icon  [icon]="closeModalIcon" size=2x ></fa-icon>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="row my-3">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Biografía</mat-label>
+            <textarea matInput placeholder="Cuéntale tu historia al" class="textarea-bio" [(ngModel)]="bio">{{bio}}</textarea>
+          </mat-form-field>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="[modal.close('Save click'), sendData()]">Guardar</button>
     </div>
 
+  </ng-template>
 
-  </div>
 </div>

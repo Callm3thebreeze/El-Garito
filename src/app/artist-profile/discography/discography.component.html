@@ -2,31 +2,34 @@
 
   <div class="row">
     <div class="title">
-        <h1>Discografía</h1>
+      <h1>Discografía &nbsp;&nbsp;&nbsp;<fa-icon *ngIf="canEdit" [icon]="editIcon" (click)="openModalForm(content)"></fa-icon></h1>
     </div>
-    <hr/>
+    <hr />
   </div>
 
-  <div class="row" >
+  <div class="row">
 
     <div class="col-12" *ngFor="let album of albums; index as albumIndex">
 
+      <fa-icon  [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
+
       <div class="person">
         <div class="row">
-              <div class="col-md-5">
-                <img (click)="album.show = !album.show" src={{album.picture}} alt="Un Disco">
-              </div>
-              <div class="info col-md-7">
-                <div class="name">
-                  {{album.name}}
-                </div>
-                <div class="date">
-                  {{album.date}}
-                </div>
-                <div class="date">
-                 <p>{{album.songs?.length}} canciones</p>
-                </div>
-              </div>
+          <div class="col-md-5">
+            <img (click)="album.show = !album.show" src={{album.picture}} alt="Un Disco">
+          </div>
+          <div class="info col-md-7">
+            <div class="name">
+              {{album.name}}
+
+            </div>
+            <div class="date">
+              {{album.releaseDate}}
+            </div>
+            <div class="date">
+              <p>{{album.songs?.length}} canciones</p>
+            </div>
+          </div>
         </div>
         <div class="col-12 songs" *ngIf="album.show">
           <div *ngFor="let song of album.songs; index as i">
@@ -35,7 +38,80 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
+
+  <!--  Form Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Añadir nuevo album</h4>
+      <button type="button" class="close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <fa-icon  [icon]="closeModalIcon" size=2x></fa-icon>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="mForm" (ngSubmit)="onSubmit()">
+        <div class="row my-3">
+
+            <mat-form-field>
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="name" [ngClass]="{'is-invalid': isSent && f.name.errors}">
+            </mat-form-field>
+            <mat-error *ngIf="isSent && f.name.errors">
+               Introduce un nombre <strong>válido</strong>
+            </mat-error>
+
+        </div>
+        <div class="row my-3">
+
+          <mat-form-field>
+            <mat-label>Portada</mat-label>
+            <input matInput type="text" formControlName="picture" [ngClass]="{'is-invalid': isSent && f.picture.errors}">
+          </mat-form-field>
+          <mat-error *ngIf="isSent && f.picture.errors">
+            Introduce un archivo <strong>válido</strong>
+          </mat-error>
+
+      </div>
+        <div class="row my-3">
+            <div class="d-flex">
+              <mat-form-field>
+                <mat-label>Añadir canción</mat-label>
+                <input matInput (keyup.enter)="addSong()" (focus)="errorSong = false" type="text"
+                placeholder="Nombre canción" [(ngModel)]="songName" [ngModelOptions]="{standalone: true}" />
+              </mat-form-field>
+              <button type="button" (click)="addSong()" class="btn-add-song btn ">
+                <fa-icon [icon]="addIcon"></fa-icon>
+              </button>
+            </div>
+            <mat-error *ngIf="errorSong">
+              No lo puedes dejar en blanco
+            </mat-error>
+          </div>
+          <div *ngFor="let song of songs; index as i" class="d-flex align-items-center my-2">
+            <fa-icon (click)="removeSong(i)" [icon]="closeIcon"></fa-icon>
+            <span>{{song}} </span>
+          </div>
+
+
+        <div class="row my-3">
+
+          <mat-form-field>
+            <mat-label>Fecha de Lanzamiento</mat-label>
+            <input matInput type="date" formControlName="releaseDate" [ngClass]="{'is-invalid': isSent && f.releaseDate.errors}">
+          </mat-form-field>
+          <mat-error *ngIf="isSent && f.releaseDate.errors">
+            Introduce una fecha <strong>válida</strong>
+          </mat-error>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" (click)="modal.close('Save click')">Guardar</button>
+
+      </div>
+      </form>
+    </div>
+
+
+  </ng-template>
+
+</div>

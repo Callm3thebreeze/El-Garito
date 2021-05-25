@@ -28,9 +28,9 @@
   margin: -150px 0px 1px 0px;
   background: none;
 
-  letter-spacing: -8px;
+  letter-spacing: -8.5px;
   font-size: 7em;
-  color: white;
+  color: #ffff;
 }
 
 
@@ -118,7 +118,7 @@
 
   margin: 0 auto;
   background-color: none;
-  color: white;
+  color: #ffff;
   font-size: 1.6em;
   letter-spacing: -1.1px;
 
@@ -155,20 +155,38 @@
 
       .link-box{
         display: flex;
-        margin: 3%;
+        margin: 10% 0%;
 
         .left-item{
           margin-right: 10%;
         }
 
         .card-link{
-          color: white;
+          color: #ffff;
         }
 
       }
     }
+
+    fa-icon {
+
+      cursor: pointer;
+      font-size: 0.7em;
+      color: #ffff;
+
+    }
+  }
+  .modal-header{
+
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0px;
+    background: none;
+    font-size: 1.1em;
+    color: $cian;
+
   }
 }
+
 
 
 

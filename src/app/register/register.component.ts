@@ -33,11 +33,7 @@ export class RegisterComponent implements OnInit {
 
      }
 
-  ngOnInit(): void {
-
-    if(this.authService.isAuthenticated()) this.router.navigate(["/artist"])
-
-  }
+  ngOnInit(){}
 
   get f() {
     return this.mForm.controls
@@ -68,7 +64,8 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register(register).subscribe((data: any) => {
       localStorage.setItem("token",data.access_token)
-      this.router.navigate(["/artist"])
+      localStorage.setItem("username",data.data.username)
+      this.router.navigate([`/${data.data.username}`])
       console.log(data)
     },
       error => {

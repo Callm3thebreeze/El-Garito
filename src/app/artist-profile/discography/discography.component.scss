@@ -28,11 +28,16 @@
     }
   }
 
+  .remove-icon{
+    position: relative;
+    margin-left: 100%;
+  }
 
   .person{
-    background-color: white;
-
+    background-color: #ffff;
     margin: 6% 0px;
+
+
 
     img{
 
@@ -48,6 +53,8 @@
         font-weight: bold;
         font-size: 1.8em;
         padding: 1%;
+
+
       }
 
       .date{
@@ -64,6 +71,18 @@
 
       }
     }
+  }
+}
+
+
+fa-icon {
+
+  cursor: pointer;
+  font-size: 0.7em;
+  color: $edit;
+
+  &:hover{
+    color: $g-red;
   }
 }
 

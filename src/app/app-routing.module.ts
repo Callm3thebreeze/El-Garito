@@ -18,12 +18,13 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 
 const routes: Routes = [
  { path: "", component: CoverComponent, pathMatch: "full"},
+ { path: "home", component: CoverComponent},
  { path: "login", component: LoginComponent},
  { path: "signup", component: RegisterComponent},
  { path: "search", component: SearchComponent },
  { path: "events", component: ConcertsComponent},
  { path: "email", component: EmailFormComponent},
- { path: "artist", component: ArtistProfileComponent, children:
+ { path: ":username", component: ArtistProfileComponent, children:
   [
     { path: "", component: InfoComponent, pathMatch: "full"},
     { path: "members", component: MembersComponent },
@@ -36,7 +37,9 @@ const routes: Routes = [
  ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    paramsInheritanceStrategy: 'always'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

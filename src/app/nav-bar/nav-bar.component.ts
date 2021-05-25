@@ -10,8 +10,12 @@ export class NavBarComponent implements OnInit {
   constructor() { }
 
   public navbarCollapsed = true;
+  username: string = "home"
 
   ngOnInit() {
+
+    const username = localStorage.getItem("username")
+    if(username) this.username = username
   }
 
 }

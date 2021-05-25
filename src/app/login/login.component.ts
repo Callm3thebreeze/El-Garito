@@ -28,9 +28,7 @@ export class LoginComponent implements OnInit {
 
      }
 
-  ngOnInit(): void {
-    if(this.authService.isAuthenticated()) this.router.navigate(["/artist"])
-  }
+  ngOnInit(): void { }
 
   get f() {
     return this.mForm.controls
@@ -55,7 +53,8 @@ export class LoginComponent implements OnInit {
     login.password = this.f.password?.value
     this.userService.login(login).subscribe((data: any) => {
       localStorage.setItem("token",data.access_token)
-      this.router.navigate(["/artist"])
+      localStorage.setItem("username",data.data.username)
+      this.router.navigate([`/${data.data.username}`])
       console.log(data)
     },
       error => {

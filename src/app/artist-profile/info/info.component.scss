@@ -18,8 +18,9 @@
 .bio{
   margin-right: 10%;
 
-  .title{
+  .title, .genre-title{
     h1{
+      white-space: nowrap;
       letter-spacing: -2.5px;
       font-family: 'Contrail One', cursive;
       font-weight: 500;
@@ -29,29 +30,45 @@
   }
 
   .info{
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
 
   .genre{
     display: flex;
     margin: 10% 0px 10% 0px;
-
-    .genre-title{
-      h1{
-
-        font-family: 'Contrail One', cursive;
-        font-weight: 500;
-        font-size: 2.5em;
-        letter-spacing: -2.5px;
-        color: $g-red;
-      }
     }
-
     .genre-selection{
       margin-left: 5%;
       font-size: 1.2em;
     }
+}
 
+
+.textarea-bio {
+  min-height: 200px;
+}
+
+.genre-select, .genre-btn{
+  transition-property: display;
+  transition-duration: 0.56s;
+  transition-timing-function: ease-in-out;
+}
+
+.hidden{
+  display: none;
+  transition-property: display;
+  transition-duration: 0.56s;
+  transition-timing-function: ease-in-out;
+}
+
+fa-icon {
+
+  cursor: pointer;
+  font-size: 0.7em;
+  color: $edit;
+
+  &:hover{
+    color: $g-red;
   }
 }
 
@@ -59,7 +76,7 @@
 hr {
   margin-top: 3%;
   margin-bottom: 5%;
-  border-top: 4px solid rgb(255, 255, 255);
+  border-top: 4px solid #ffff;
 }
 
 

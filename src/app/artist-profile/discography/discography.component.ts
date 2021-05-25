@@ -1,5 +1,14 @@
+import { AuthGuardService } from './../../services/auth/auth-guard.service';
+import { UserService } from './../../services/user.service';
+import { AlbumService } from './../../services/album/album.service';
 import { Album } from './../../models/album.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faTimesCircle, faPlus, faTimes, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 @Component({
   selector: 'app-discography',
   templateUrl: './discography.component.html',
@@ -8,8 +17,88 @@ import { Component, OnInit } from '@angular/core';
 export class DiscographyComponent implements OnInit {
 
   albums : Album[] = []
+  songs : string[] = []
+  songName: string = ""
+  errorSong: boolean = false
+  closeIcon = faTimesCircle
+  closeModalIcon = faTimes
+  addIcon = faPlus
+  editIcon = faEdit
+  removeIcon = faTrash
+  mForm: FormGroup
+  isSent: boolean = false
+  canEdit : boolean = false
 
-  constructor() { }
+  constructor(private modal: NgbModal,
+    private router: Router,
+    private fb: FormBuilder,
+    private albumService: AlbumService,
+    private userService: UserService,
+    private guardService: AuthGuardService,
+    private activatedRoute: ActivatedRoute) {
+      this.mForm = this.fb.group({
+        name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s]+[a-zA-Z0-9]$/)]],
+        releaseDate: ['', [Validators.required, Validators.pattern(/^\d{4}([./-])\d{2}\1\d{2}$/)]],
+        picture: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9][a-zA-Z0-9-_\.]+\.[a-zA-Z0-9]{2,4}/)]]
+       })
+     }
+
+  openModalForm(content: TemplateRef<any>){
+    this.modal.open(content)
+  }
+
+  get f() {
+    return this.mForm.controls
+  }
+
+  onSubmit() {
+
+    this.isSent = true
+
+    console.log("Enviar form");
+
+    if (this.mForm.invalid) {
+      console.log(this.f.releaseDate.errors)
+      return
+    }
+    /*Hacer llamada al service
+    Hacer dos servicios: user, people
+    llamar al servicio de login y en la respuesta guardar en el localStorage el token y redirigir al DASHBOARD
+    */
+
+    const album: Album = new Album()
+
+    album.name = this.f.name?.value
+    album.picture = this.f.picture?.value
+    album.songs = this.songs
+    album.releaseDate = this.f.releaseDate?.value
+
+    console.log(album)
+
+    this.albumService.saveAlbum(album).subscribe((data: any) => {
+      console.log(data)
+    },
+      error => {
+        console.log("Error:", error);
+      }
+    );
+
+    this.songs = []
+ }
+
+  addSong() {
+    if (this.songName.trim() != "") {
+      this.songs.push(this.songName)
+      this.songName = ""
+    } else {
+      this.errorSong = true
+    }
+  }
+
+  removeSong(index: number){
+    this.songs.splice(index,1)
+  }
+
 
   addShowAttr(){
     const albums = this.albums.reduce((acc: Album[], album: Album)=>{
@@ -24,35 +113,24 @@ export class DiscographyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.albums = [
-      {name: "IV",
-      date: "2020",
-      picture:"https://static.fnac-static.com/multimedia/Images/ES/NR/29/4d/5c/6049065/1540-1.jpg",
-      songs: ["No hay Vuelta Atrás", "Flor de Limón", "Juan el Largo", "Clavos de Papel", "La Aguja", "Soy Español, pero tengo un Kebab", "Comunión", "Emilio el Busagre", "Mr Clack", "Nací Santo", "Rey del Ajuar", "Rosario", "Reunión"],
-      },
 
-      {name: "IV",
-      date: "2020",
-      picture:"https://f4.bcbits.com/img/a2432233182_10.jpg",
-      songs: ["No hay Vuelta Atrás", "Flor de Limón", "Juan el Largo", "Clavos de Papel", "La Aguja", "Soy Español, pero tengo un Kebab", "Comunión", "Emilio el Busagre", "Mr Clack", "Nací Santo", "Rey del Ajuar", "Rosario", "Reunión"]
-
-    },
-
-      {name: "IV",
-      date: "2020",
-      picture:"https://f4.bcbits.com/img/a3653919065_10.jpg",
-      songs: ["No hay Vuelta Atrás", "Flor de Limón", "Juan el Largo", "Clavos de Papel", "La Aguja", "Soy Español, pero tengo un Kebab", "Comunión", "Emilio el Busagre", "Mr Clack", "Nací Santo", "Rey del Ajuar", "Rosario", "Reunión"]
-
-    },
-
-      {name: "IV",
-      date: "2020",
-      picture:"https://img.discogs.com/v58Jf6ujgJZXLMiWRpKsz7F-3l8=/fit-in/500x500/filters:strip_icc():format(webp):mode_rgb():quality(90)/discogs-images/R-13631886-1557910729-1438.jpeg.jpg",
-      songs: ["No hay Vuelta Atrás", "Flor de Limón", "Juan el Largo", "Clavos de Papel", "La Aguja", "Soy Español, pero tengo un Kebab", "Comunión", "Emilio el Busagre", "Mr Clack", "Nací Santo", "Rey del Ajuar", "Rosario", "Reunión"]
-
+    let username = this.activatedRoute.parent?.snapshot.params["username"]
+    const usernameLS = localStorage.getItem("username")
+    if (usernameLS && usernameLS == username && this.guardService.canActivate()) {
+      this.canEdit = true
     }
-  ]
-    this.addShowAttr()
+
+    if (username) {
+      this.userService.getUser(username).subscribe((data: any) => {
+        this.albums = data.discography as Album[]
+        this.addShowAttr()
+        console.log(this.albums)
+      }, error => {
+        console.log("Error:", error);
+      })
+    } else {
+      console.log("No existe username")
+    }
   }
 
 }

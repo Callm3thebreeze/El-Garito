@@ -22,6 +22,24 @@ export class UserService {
     )
   }
 
+  getData(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/artist`).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    )
+  }
+
+  getUser(username: string): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/${username}`).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    )
+  }
+
+
+
   register(register: Register): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/signup`, register).pipe(
       catchError(error => {

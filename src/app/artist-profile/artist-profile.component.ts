@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { AuthGuardService } from './../services/auth/auth-guard.service';
+import { SocialService } from './../services/social/social.service';
+import { Social } from './../models/social.model';
+
+import { UserService } from './../services/user.service';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { faSpotify, faTwitch, faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faTwitch } from '@fortawesome/free-brands-svg-icons';
-
+import { faTimesCircle, faPlus, faTimes, faEdit, faEthernet } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-artist-profile',
@@ -15,7 +20,14 @@ import { faTwitch } from '@fortawesome/free-brands-svg-icons';
 })
 export class ArtistProfileComponent implements OnInit {
 
-    constructor() { }
+    constructor( private modal: NgbModal,
+      private router: Router,
+      private userService: UserService,
+      private guardService: AuthGuardService,
+      private socialService : SocialService,
+      private activatedRoute: ActivatedRoute) {
+
+       }
 
   public navbarCollapsed = true;
 
@@ -26,48 +38,104 @@ export class ArtistProfileComponent implements OnInit {
   faYoutube = faYoutube;
   faTwitter = faTwitter;
   faTwitch = faTwitch;
+  faEthernet = faEthernet;
+  social = new Social()
+  username: string = ""
+  canEdit : boolean = false
 
-  socialNetworks= [
+  closeIcon = faTimesCircle
+  closeModalIcon = faTimes
+  editIcon = faEdit
+  addIcon = faPlus
 
+  socialNetworks: any = []
+
+  openModalForm(content: TemplateRef<any>){
+    this.modal.open(content)
+  }
+
+  sendData(){
+
+    console.log(this.social)
+    this.socialService.updateSocial(this.social).subscribe((data:any) => {
+      this.ngOnInit()
+    })
+
+  }
+
+  addSocialNetworkToArray(){
+
+    this.socialNetworks = [
     {
-      link: "https://open.spotify.com/artist/2viZosiTrNf88YlPRVHkos?si=5u599AduQmyu6K3PS5CvwA",
-      icon: faSpotify,
-      title: "Spotify"
-    },
-    {
-      link: "https://soundcloud.com/losestanques",
+      link: this.social.soundcloud,
       icon: faSoundcloud,
       title: "Soundcloud"
     },
     {
-      link: "https://www.youtube.com/channel/UC1kTiQsGlc81VTS0VbsZEIQ",
+      link: this.social.youtube,
       icon: faYoutube,
       title: "Youtube"
     },
     {
-      link: "https://www.instagram.com/los_estanques/?hl=es",
+      link: this.social.instagram,
       icon: faInstagram,
       title: "Instagram"
     },
     {
-      link: "https://www.facebook.com/losestanquesband",
+      link: this.social.facebook,
       icon: faFacebook,
       title: "Facebook"
     },
     {
-      link: "https://twitter.com/Los_Estanques",
+      link: this.social.twitter,
       icon: faTwitter,
       title: "Twitter"
     },
     {
-      link: "https://twitter.com/Los_Estanques",
+      link: this.social.spotify,
+      icon: faSpotify,
+      title: "Spotify"
+    },
+    {
+      link: this.social.web,
+      icon: faEthernet,
+      title: "Web"
+    },
+    {
+      link: this.social.twitch,
       icon: faTwitch,
       title: "Twitch"
-    },
+    }
   ]
 
-
-  ngOnInit() {
   }
 
+  ngOnInit() {
+
+    this.activatedRoute.params.subscribe(params => {
+      const usernameLS = localStorage.getItem("username")
+      let username = params['username']
+
+      if(usernameLS && usernameLS == username && this.guardService.canActivate()) {
+        this.canEdit = true
+      }
+
+      if (username) {
+        this.username = username
+        this.userService.getUser(username).subscribe((data:any)=>{
+          this.social = data.social
+          this.addSocialNetworkToArray()
+          console.log(data)
+        },error => {
+          console.log("Error:", error);
+          this.router.navigate(['/'])
+        })
+      } else  {
+         this.router.navigate(['/'])
+      }
+
+    })
+
+
+  }
 }

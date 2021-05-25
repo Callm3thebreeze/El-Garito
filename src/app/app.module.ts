@@ -1,3 +1,5 @@
+import { InfoComponent } from './artist-profile/info/info.component';
+import { ContactComponent } from './artist-profile/contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DiscographyComponent } from './artist-profile/discography/discography.component';
@@ -27,13 +29,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatSelectModule } from "@angular/material/select";
 import { EmailFormComponent } from './email-form/email-form.component';
 
 
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       NavBarComponent,
       FooterComponent,
@@ -46,7 +49,9 @@ import { EmailFormComponent } from './email-form/email-form.component';
       ConcertsComponent,
       LoginComponent,
       RegisterComponent,
-      EmailFormComponent
+      EmailFormComponent,
+      ContactComponent,
+      InfoComponent
    ],
   imports: [
     BrowserModule,
@@ -59,6 +64,8 @@ import { EmailFormComponent } from './email-form/email-form.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

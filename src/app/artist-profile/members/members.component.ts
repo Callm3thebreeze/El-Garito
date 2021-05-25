@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
+import { AuthGuardService } from './../../services/auth/auth-guard.service';
+import { MemberService } from './../../services/member/member.service';
+import { Member } from './../../models/member.model';
+import { UserService } from './../../services/user.service';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faTimesCircle, faPlus, faTimes, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-members',
@@ -8,30 +15,91 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersComponent implements OnInit {
 
+  members: Member[] = []
+  closeIcon = faTimesCircle
+  closeModalIcon = faTimes
+  addIcon = faPlus
+  editIcon = faEdit
+  removeIcon = faTrash
+  mForm: FormGroup
+  isSent: boolean = false
+  canEdit: boolean = false
 
-  constructor() { }
+  constructor(private modal: NgbModal,
+    private router: Router,
+    private fb: FormBuilder,
+    private memberService : MemberService,
+    private userService: UserService,
+    private guardService: AuthGuardService,
+    private activatedRoute : ActivatedRoute) {
+      this.mForm = this.fb.group({
+        name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s]+[a-zA-Z0-9]$/)]],
+        role: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s,\.]+[a-zA-Z0-9]$/)]],
+        picture: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9][a-zA-Z0-9-_\.]+\.[a-zA-Z0-9]{2,4}/)]]
+       })
+     }
 
-  members = [
+  openModalForm(content: TemplateRef<any>){
+    this.modal.open(content)
+  }
 
-    {name: "Ínigo Bregel",
-    role: "Voz principal, teclados",
-    picture:"https://img.discogs.com/Lm1lrOq6qmQHkQxgo6jr13G08z4=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/A-4933912-1608223092-1953.jpeg.jpg"},
+  get f() {
+    return this.mForm.controls
+  }
 
-    {name: "Germán Herrero",
-    role: "Guitarra solista",
-    picture:"https://ta.azureedge.net/p/images/usuarios/l/u_PPxRb51EgT9tpCDlNnTYW6OFIGQsMs0.jpg/600x600cut/"},
+  onSubmit() {
 
-    {name: "Andrea Conti",
-    role: "Batería",
-    picture:"https://denaflows.com/blog/gallery/03496-5d4-11-11-17-final-xix-concurso-pop-rock-villa-de-bilbao-los-estanques/025-Final-XIX-Concurso-Pop-Rock-Villa-de-Bilbao-Los-Estanques-11XI17-por-Dena-Flows.jpg"},
+    this.isSent = true
 
-    {name: "Dani Pozo",
-    role: "Bajista",
-    picture:"https://ta.azureedge.net/p/images/usuarios/l/ZIMIy1rP1EjfDs6syaxCSY-goLIixjAS0.jpg/600x600cut/"},
+    console.log("Enviar form");
 
-  ]
+    if (this.mForm.invalid) {
+      return
+    }
+    /*Hacer llamada al service
+    Hacer dos servicios: user, people
+    llamar al servicio de login y en la respuesta guardar en el localStorage el token y redirigir al DASHBOARD
+    */
+
+    const member: Member = new Member()
+
+    member.name = this.f.name?.value
+    member.picture = this.f.picture?.value
+    member.role = this.f.role?.value
+
+    console.log(member)
+
+    this.memberService.saveMember(member).subscribe((data: any) => {
+      console.log(data)
+      this.ngOnInit()
+    },
+      error => {
+        console.log("Error:", error);
+      }
+    );
+
+ }
 
   ngOnInit() {
+
+    let username = this.activatedRoute.parent?.snapshot.params["username"]
+    const usernameLS = localStorage.getItem("username")
+    if (usernameLS && usernameLS == username && this.guardService.canActivate()) {
+      this.canEdit = true
+    }
+
+    if (username) {
+      this.userService.getUser(username).subscribe((data: any) => {
+        if(data.info && data.info.members){
+          this.members = data.info.members as  Member[]
+         }
+         console.log(this.members)
+      }, error => {
+        console.log("Error:", error);
+      })
+    } else {
+      console.log("No existe username")
+    }
   }
 
 }
