@@ -21,7 +21,7 @@ const routes: Routes = [
  { path: "home", component: CoverComponent},
  { path: "login", component: LoginComponent},
  { path: "signup", component: RegisterComponent},
- { path: "search", component: SearchComponent },
+ { path: "search/:artistname", component: SearchComponent},
  { path: "events", component: ConcertsComponent},
  { path: "email", component: EmailFormComponent},
  { path: ":username", component: ArtistProfileComponent, children:
@@ -33,7 +33,7 @@ const routes: Routes = [
     ]
    },
  { path: "404", component: NotFoundComponent },
- { path: "**", redirectTo: "/404" },
+ { path: "**", redirectTo: "404" },
  ];
 
 @NgModule({

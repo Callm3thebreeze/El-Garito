@@ -10,10 +10,35 @@ import { faTimesCircle, faPlus, faTimes, faEdit } from '@fortawesome/free-solid-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss']
+  styleUrls: ['./info.component.scss'],
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('0.5s ease-out',
+                    style({ height: 25, opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ height: 25, opacity: 1 }),
+            animate('0.5s ease-in',
+                    style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class InfoComponent implements OnInit {
 
@@ -28,7 +53,7 @@ export class InfoComponent implements OnInit {
   closeModalIcon = faTimes
   editIcon = faEdit
   addIcon = faPlus
-  genresHidden = true
+  genresHidden = false
   username: string = ""
   canEdit : boolean = false
 
@@ -75,9 +100,9 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
     this.loadData()
     this.router.events.subscribe(event=>{
-       console.log(event)
        if(event instanceof NavigationEnd){
         this.loadData()
+        if(event.url =="/404") this.router.navigate(['/404'])
        }
      })
 

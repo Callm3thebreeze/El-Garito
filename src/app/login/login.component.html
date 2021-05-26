@@ -5,18 +5,35 @@
        <a href=""><img class="logo" src="../assets/img/neonlogo2.png" alt="El Garito"></a>
         <!-- <h3 class="mt-5 mb-3">Iniciar Sesión</h3> -->
         <form [formGroup]="mForm" (ngSubmit)="onSubmit()">
+
           <div>
             <mat-form-field>
               <mat-label>Usuario</mat-label>
               <input matInput type="text" formControlName="username" [ngClass]="{'is-invalid': isSent && f.username.errors}">
+              <mat-error *ngIf="isSent && f.username.errors">
+                Introduce un usuario <strong>válido</strong>
+              </mat-error>
             </mat-form-field>
+            <div>
+              <mat-error *ngIf="errorUsername" class="not-logged">
+                No existe este <strong>usuario</strong>
+              </mat-error>
+            </div>
           </div>
 
           <div>
             <mat-form-field>
               <mat-label>Contraseña</mat-label>
               <input matInput type="password" formControlName="password" [ngClass]="{'is-invalid': isSent && f.password.errors}">
+              <mat-error *ngIf="isSent && f.password.errors">
+                Introduce una contraseña <strong>válida</strong>
+              </mat-error>
             </mat-form-field>
+            <div>
+              <mat-error *ngIf="errorPass" class="not-logged">
+              La contraseña es <strong>incorrecta</strong>
+            </mat-error>
+          </div>
           </div>
 
           <a href="">¿Has olvidado la contraseña?</a>
@@ -30,12 +47,12 @@
     <div class="col d-none d-lg-block g-0">
       <div class="right-col text-light">
         <div class="form-floating">
-          <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.username.errors">
+          <!-- <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.username.errors">
               El email no es válido
           </div>
           <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.password.errors">
               La constraseña no es válida
-          </div>
+          </div> -->
       </div>
       </div>
     </div>

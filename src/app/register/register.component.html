@@ -4,7 +4,7 @@
       <div class=" left-col text-light">
 
         <div class="form-floating">
-          <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.username.errors">
+        <!--   <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.username.errors">
             El usuario no es válido
           </div>
           <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.email.errors">
@@ -18,7 +18,7 @@
         </div>
         <div class="form-control is-invalid" role="alert" *ngIf="isSent && f.location.errors">
           La localización no es válida
-      </div>
+      </div> -->
       </div>
 
       </div>
@@ -26,39 +26,63 @@
 
       <div class="col-12 col-md-3">
       <div class="form-singin right-col">
-
+        <a href=""><img class="logo" src="../assets/img/neonlogo2.png" alt="El Garito"></a>
         <!-- <h3 class="mt-5 mb-3">Iniciar Sesión</h3> -->
         <form [formGroup]="mForm" (ngSubmit)="onSubmit()">
 
           <div>
             <mat-form-field>
-              <mat-error *ngIf="isSent && f.artist_name.errors">
-                <strong>Todos los campos son requeridos</strong>
-              </mat-error>
               <mat-label>Nombre</mat-label>
               <input matInput type="text" formControlName="artist_name" [ngClass]="{'is-invalid': isSent && f.artist_name.errors}">
+              <mat-error *ngIf="isSent && f.artist_name.errors">
+                Nombre de artista es <strong>requerido</strong>
+              </mat-error>
             </mat-form-field>
+            <div>
+              <mat-error *ngIf="errorName" class="not-logged">
+              Nombre de artista ya <strong>existe</strong>
+            </mat-error>
+          </div>
           </div>
 
           <div>
             <mat-form-field>
               <mat-label>Nick de usuario</mat-label>
               <input matInput type="text" formControlName="username" [ngClass]="{'is-invalid': isSent && f.username.errors}">
+              <mat-error *ngIf="isSent && f.username.errors">
+                Nombre de usuario es <strong>requerido</strong>
+              </mat-error>
             </mat-form-field>
+            <div>
+              <mat-error *ngIf="errorUsername" class="not-logged">
+              Nombre de usuario ya <strong>existe</strong>
+            </mat-error>
+          </div>
           </div>
 
           <div>
             <mat-form-field>
               <mat-label>e-mail</mat-label>
-              <input matInput type="text" formControlName="email" [ngClass]="{'is-invalid': isSent && f.email.errors}">
+              <input matInput type="text" formControlName="email" autocomplete="email" [ngClass]="{'is-invalid': isSent && f.email.errors}">
+              <mat-error *ngIf="isSent && f.email.errors">
+                Email es <strong>requerido</strong>
+              </mat-error>
             </mat-form-field>
+            <div>
+              <mat-error *ngIf="errorEmail" class="not-logged">
+              Email ya <strong>existe</strong>
+            </mat-error>
+          </div>
           </div>
 
 
           <div>
             <mat-form-field>
               <mat-label>Contraseña</mat-label>
-              <input matInput type="password" formControlName="password" [ngClass]="{'is-invalid': isSent && f.password.errors}">
+              <input matInput type="password" formControlName="password" autocomplete="new-password" [ngClass]="{'is-invalid': isSent && f.password.errors}">
+              <mat-error *ngIf="isSent && f.email.errors">
+                Email es <strong>requerido</strong>
+              </mat-error>
             </mat-form-field>
           </div>
 
@@ -66,16 +90,32 @@
           <div>
             <mat-form-field>
               <mat-label>Confirmar contraseña</mat-label>
-              <input matInput type="text" formControlName="confirm_password" [ngClass]="{'is-invalid': isSent && f.confirm_password.errors}">
+              <input matInput type="password" formControlName="confirm_password" autocomplete="new-password" [ngClass]="{'is-invalid': (isSent && f.confirm_password.errors) || (isSent && errorPass)}">
+              <mat-error *ngIf="(isSent && f.confirm_password.errors) || (isSent && errorPass)">
+                La constraseñas no <strong>coinciden</strong> o no es <strong>válida</strong>
+              </mat-error>
             </mat-form-field>
           </div>
 
-          <div>
+        <!--   <div>
             <mat-form-field>
               <mat-label>Localidad</mat-label>
               <input matInput type="text" formControlName="location" [ngClass]="{'is-invalid': isSent && f.location.errors}">
+              <mat-error *ngIf="(isSent && f.confirm_password.errors) || (isSent && errorPass)">
+                La localización no es <strong>válida</strong>
+              </mat-error>
             </mat-form-field>
-          </div>
+          </div> -->
+
+          <mat-form-field>
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="location" ngDefaultControl class="mat_select" [ngClass]="{'is-invalid': isSent && f.location.errors}">
+              <mat-option class="mat_option" *ngFor="let city of citiesList" [value]="city">{{city}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="isSent && f.location.errors">
+              La provincia no es <strong>válida</strong>
+            </mat-error>
+          </mat-form-field>
 
 
 

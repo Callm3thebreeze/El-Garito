@@ -38,7 +38,19 @@ export class UserService {
     )
   }
 
-
+  getUsers(name: string, genre: string, location: string): Observable<any> {
+    const params =
+    {
+      name: name,
+      genre: genre,
+      location: location
+    }
+    return this.httpClient.get(`${environment.apiUrl}/artists`, {params:params}).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    )
+  }
 
   register(register: Register): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/signup`, register).pipe(

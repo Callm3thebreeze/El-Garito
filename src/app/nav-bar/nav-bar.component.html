@@ -11,21 +11,43 @@
     <ul class="nav-links navbar-nav">
       <li class="nav-item"><a class="nav-link" routerLink="/home" routerLinkActive="active">Portada</a></li>
       <li class="nav-item"><a class="nav-link" [routerLink]="['/', username]" routerLinkActive="active">Mi espacio</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/search" routerLinkActive="active">Panorama</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/search', '']" routerLinkActive="active">Panorama</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/events" routerLinkActive="active">Eventos</a></li>
     </ul>
 
 
 
     <div class="box-input">
-      <input #name type="text" placeholder="Encuentra...">
-     <a href="/search"><button type="button" class="btn btn-search"><img class="icon" src="../assets/img/search.png" alt="buscar"></button></a>
+      <input [(ngModel)]="artistName" type="text" placeholder="Encuentra...">
+     <a [routerLink]="['/search', artistName]"><button type="button" class="btn btn-search"><img class="icon" src="../assets/img/search.png" alt="buscar"></button></a>
     </div>
     <div class="user-icons">
       <a href="/artist"><img class="icon2" src="../assets/img/alien.png" alt="Profile"></a>
       <a href="/email"><img class="icon2" src="../assets/img/mesage.png" alt="Mail"></a>
-      <a href="/email"><img class="icon2" src="../assets/img/logout.png" alt="Logout"></a>
+      <button
+      type="button"
+      (click)="logOut()"
+      class="btn-logout">
+      <img class="icon2" src="../assets/img/logout.png" alt="Logout">
+    </button>
     </div>
   </div>
+
+
+<!-- <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Cerrar sesión</h5>
+        <button type="button"class="btn-close"data-bs-dismiss="modal"aria-label="Close"></button>
+      </div>
+      <div class="modal-body">¿Estas seguro de querer cerrar sesión?</div>
+      <div class="modal-footer">
+        <button type="button"class="btn btn-secondary"data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="logOut()">Cerrar sesión</button>
+    </div>
+  </div>
+</div>
+</div> -->
 
 </nav>

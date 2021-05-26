@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {Register} from '../models/register.model';
 import { AuthService } from '../services/auth/auth.service';
-
+import { cities } from '../models/citiesList';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +15,10 @@ export class RegisterComponent implements OnInit {
   mForm: FormGroup
   isSent = false
   errorPass = false
+  errorUsername = false
+  errorName = false
+  errorEmail = false
+  citiesList: string[] = cities
 
   constructor(
     private router: Router,
@@ -39,6 +43,20 @@ export class RegisterComponent implements OnInit {
     return this.mForm.controls
   }
 
+  setErrors(error: any){
+
+    error.error.forEach((errMsg:string) => {
+
+      if(errMsg=="artist name already exists")this.errorName = true
+      if(errMsg=="email already exists") this.errorEmail = true
+      if(errMsg=="username already exists") this.errorUsername = true
+
+    });
+
+
+  }
+
+
   onSubmit() {
 
     this.isSent = true
@@ -62,6 +80,8 @@ export class RegisterComponent implements OnInit {
     register.email = this.f.email?.value
     register.location = this.f.location?.value
 
+    console.log(register)
+
     this.userService.register(register).subscribe((data: any) => {
       localStorage.setItem("token",data.access_token)
       localStorage.setItem("username",data.data.username)
@@ -70,6 +90,8 @@ export class RegisterComponent implements OnInit {
     },
       error => {
         console.log("Error:", error);
+        this.setErrors(error);
+
       }
     );
  }

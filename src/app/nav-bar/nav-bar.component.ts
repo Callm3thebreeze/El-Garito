@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public navbarCollapsed = true;
   username: string = "home"
+  artistName: string = ""
+
+  logOut(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    this.router.navigate(['/'])
+  }
+/*
+  goToSearch(){
+    this.router.navigate(['/search/'+this.artistName])
+  } */
 
   ngOnInit() {
 

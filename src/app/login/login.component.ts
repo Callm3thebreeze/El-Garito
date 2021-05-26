@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   mForm: FormGroup
   isSent = false
+  errorUsername = false
+  errorPass = false
 
   constructor(
     private router: Router,
@@ -22,8 +24,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService) {
 
       this.mForm = this.fb.group({
-        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]+[a-zA-Z]{2,4}$/)]],
-        password: ['', [Validators.required, Validators.pattern(/^[a-zA-z][a-z0-9]+[aa-z0-9]$/)]]
+        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]+[a-zA-Z0-9]$/)]],
+        password: ['', [Validators.required, Validators.pattern(/^[a-zA-z][a-z0-9]+[a-z0-9]$/)]]
       })
 
      }
@@ -32,6 +34,19 @@ export class LoginComponent implements OnInit {
 
   get f() {
     return this.mForm.controls
+  }
+
+  setErrors(error: any){
+
+    if(error.error == "wrong password"){
+      this.errorPass = true
+    } else if(error.error == "wrong username"){
+      this.errorUsername = true
+    }
+
+    console.log(this.errorUsername)
+    console.log(this.errorPass)
+
   }
 
   onSubmit() {
@@ -59,11 +74,9 @@ export class LoginComponent implements OnInit {
     },
       error => {
         console.log("Error:", error);
+        this.setErrors(error)
       }
-    );
-
-
-
+    )
   }
 
 

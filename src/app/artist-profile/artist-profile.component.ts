@@ -113,6 +113,8 @@ export class ArtistProfileComponent implements OnInit {
 
   ngOnInit() {
 
+    //localhost:4200/
+
     this.activatedRoute.params.subscribe(params => {
       const usernameLS = localStorage.getItem("username")
       let username = params['username']
@@ -121,7 +123,7 @@ export class ArtistProfileComponent implements OnInit {
         this.canEdit = true
       }
 
-      if (username) {
+      if (username || username=="") {
         this.username = username
         this.userService.getUser(username).subscribe((data:any)=>{
           this.social = data.social
@@ -129,7 +131,7 @@ export class ArtistProfileComponent implements OnInit {
           console.log(data)
         },error => {
           console.log("Error:", error);
-          this.router.navigate(['/'])
+          this.router.navigate(['/404'])
         })
       } else  {
          this.router.navigate(['/'])

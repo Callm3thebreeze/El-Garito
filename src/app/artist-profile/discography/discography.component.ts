@@ -71,11 +71,13 @@ export class DiscographyComponent implements OnInit {
     album.name = this.f.name?.value
     album.picture = this.f.picture?.value
     album.songs = this.songs
-    album.releaseDate = (this.f.releaseDate?.value)
+    album.releaseDate = this.f.releaseDate?.value
 
     console.log(album)
 
     this.albumService.saveAlbum(album).subscribe((data: any) => {
+      this.songs = []
+      this.ngOnInit()
       console.log(data)
     },
       error => {
@@ -83,7 +85,7 @@ export class DiscographyComponent implements OnInit {
       }
     );
 
-    this.songs = []
+
  }
 
   addSong() {
@@ -112,7 +114,7 @@ export class DiscographyComponent implements OnInit {
     console.log(this.albums)
   }
 
-  ngOnInit() {
+  loadData(){
 
     let username = this.activatedRoute.parent?.snapshot.params["username"]
     const usernameLS = localStorage.getItem("username")
@@ -131,6 +133,11 @@ export class DiscographyComponent implements OnInit {
     } else {
       console.log("No existe username")
     }
+
+  }
+
+  ngOnInit() {
+    this.loadData()
   }
 
 }

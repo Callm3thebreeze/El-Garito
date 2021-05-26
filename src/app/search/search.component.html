@@ -7,16 +7,16 @@
     <div class="row">
       <div class="selector col-12 col-md-6">
 
-        <select required name="provincia" class="filter form-control">
-          <option value="">Elige una provincia</option>
+        <select (change)="getUsers()" required name="provincia" class="filter form-control" [(ngModel)]="location">
+          <option value="">--- Todas las Provincias ---</option>
           <option *ngFor="let provincia of provincias">{{provincia}}</option>
         </select>
-        <select required name="genero" class="filter form-control">
-          <option value="">Elige un género</option>
+        <select (change)="getUsers()" required name="genero" class="filter form-control" [(ngModel)]="genre">
+          <option value="">-- Todos los Géneros </option>
           <option *ngFor="let genre of genres">{{genre}}</option>
         </select>
-        <input type="text" class="filter form-control" placeholder="Nombre de artista">
-        <button type="button" class="btn">¡Dale!</button>
+        <input type="text" [(ngModel)]="artistName" class="filter form-control" placeholder="Nombre de artista">
+        <button (click)="getUsers()" type="button" class="btn">¡Dale!</button>
       </div>
       <div class="col d-none d-lg-block">
         <img class="map" src="../../assets/img/spain_neon2.png" alt="Spain Map">
@@ -28,7 +28,7 @@
 
       <div *ngFor="let artist of artists" class="col-sm-6 col-md-4">
 
-        <a href="artist"><div class="artist-card" style="background-image: url('{{artist.picture}}'); background-size: cover;">
+        <a [routerLink]="['/', artist.username]" routerLinkActive="router-link-active" ><div class="artist-card" style="background-image: url('{{artist.picture}}'); background-size: cover;">
             <p class="card-name">{{artist.name}}</p>
           </div>
         </a>
