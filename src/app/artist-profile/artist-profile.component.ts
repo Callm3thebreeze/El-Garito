@@ -16,7 +16,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-artist-profile',
   templateUrl: './artist-profile.component.html',
-  styleUrls: ['./artist-profile.component.scss']
+  styleUrls: ['./artist-profile.component.scss'],
+
 })
 export class ArtistProfileComponent implements OnInit {
 

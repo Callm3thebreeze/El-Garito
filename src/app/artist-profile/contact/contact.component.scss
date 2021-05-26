@@ -9,11 +9,26 @@
   text-decoration: none;
   text-align: left;
 
+  fa-icon {
+
+    cursor: pointer;
+    font-size: 0.7em;
+    color: $edit;
+
+    &:hover{
+      color: $g-red;
+    }
+  }
+
 }
 
 .bg_dark{
   background-color: $bgColor;
 }
+ .close{
+   outline: none;
+ }
+
 
 
 .contact{
@@ -56,16 +71,7 @@
 
   }
 
-  fa-icon {
 
-    cursor: pointer;
-    font-size: 0.7em;
-    color: $edit;
-
-    &:hover{
-      color: $g-red;
-    }
-  }
 
 hr {
   margin-top: 3%;

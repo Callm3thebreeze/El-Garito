@@ -24,7 +24,7 @@
 
             </div>
             <div class="date">
-              {{album.releaseDate}}
+              {{album.releaseDate | date: 'yyyy'}}
             </div>
             <div class="date">
               <p>{{album.songs?.length}} canciones</p>
@@ -105,7 +105,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success" (click)="modal.close('Save click')">Guardar</button>
+        <button type="submit" class="btn btn-success genre-btn" (click)="modal.close('Save click')">Guardar</button>
 
       </div>
       </form>

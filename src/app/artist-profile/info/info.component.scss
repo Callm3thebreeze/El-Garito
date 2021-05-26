@@ -61,6 +61,21 @@
   transition-timing-function: ease-in-out;
 }
 
+
+::ng-deep .mat-form-field {
+  .mat-input-element {
+      color: #ffff;
+  }
+  .mat-form-field-label {
+      color: #ffff;
+  }
+
+  .mat-select, .mat-option {
+      color: #ffff;
+  }
+}
+
+
 fa-icon {
 
   cursor: pointer;
@@ -78,6 +93,8 @@ hr {
   margin-bottom: 5%;
   border-top: 4px solid #ffff;
 }
+
+
 
 
 @media (max-width: 640px){

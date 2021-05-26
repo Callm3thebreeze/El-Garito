@@ -71,7 +71,7 @@ export class DiscographyComponent implements OnInit {
     album.name = this.f.name?.value
     album.picture = this.f.picture?.value
     album.songs = this.songs
-    album.releaseDate = this.f.releaseDate?.value
+    album.releaseDate = (this.f.releaseDate?.value)
 
     console.log(album)
 

@@ -53,4 +53,8 @@ html, body {
 }
 
 
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 10000 !important;
+  }
+
 /* Importing Bootstrap SCSS file. */

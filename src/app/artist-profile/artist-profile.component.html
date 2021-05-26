@@ -63,7 +63,7 @@
           <div class="links-container">
 
               <div *ngFor="let network of socialNetworks">
-                <div class="link-box" *ngIf="network.link != '' && network.link != null ">
+                <div class="link-box" *ngIf="network.link != '' && network.link != null">
                   <div class="left-item">
                     <a class="card-link"  href="{{network.link}}" target="_blank">
                       <fa-icon [icon]="network.icon" size="2x"></fa-icon>
@@ -80,14 +80,14 @@
         </div>
       </div>
 
-      <ng-template #socialNetwork let-modal class="social-modal">
-        <div class="modal-header">
+      <ng-template #socialNetwork let-modal >
+        <div class="modal-header bg_dark">
           <h4 class="modal-title" id="modal-basic-title">Incluye enlaces a otros perfiles</h4>
           <button type="button" class="close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <fa-icon [icon]="closeModalIcon" size=2x></fa-icon>
           </button>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body bg_dark">
           <div class="row my-3">
             <mat-form-field class="example-full-width">
               <mat-label>Youtube</mat-label>
@@ -140,7 +140,7 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="modal-footer ">
+        <div class="modal-footer bg_dark">
           <button type="button" class="btn btn-success" (click)="[modal.close('Save click'), sendData()]">Guardar</button>
         </div>
 

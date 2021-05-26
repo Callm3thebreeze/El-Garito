@@ -33,9 +33,11 @@
       <div class="modal-body">
       <mat-form-field  class="example-full-width">
         <mat-label>Géneros</mat-label>
+
         <mat-select [(ngModel)]="genresToSubmit" ngDefaultControl multiple>
           <mat-option *ngFor="let genre of genresList" [value]="genre">{{genre}}</mat-option>
         </mat-select>
+
       </mat-form-field>
       </div>
 
