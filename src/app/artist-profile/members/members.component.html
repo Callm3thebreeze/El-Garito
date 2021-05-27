@@ -13,13 +13,14 @@
 
     <div class="col-12" *ngFor="let member of members">
 
-      <fa-icon  [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
+      <fa-icon (click)="removeMember(member._id)" [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
 
       <div class="person">
         <div class="row">
 
               <div class="col-12 col-md-4">
-                <img src={{member.picture}} alt="Un Personaje">
+                <img [src]="member.picture" alt="Un Personaje" *ngIf="member.picture">
+                <img src="../assets/img/no-image.jpg" alt="Un Personaje" *ngIf="member.picture == ''">
               </div>
               <div class="info col-12 col-md-8">
                 <div class="name">
@@ -44,7 +45,23 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="mForm" (ngSubmit)="onSubmit()">
+      <mat-error *ngIf="infoError">
+        Introduce primero <strong>información</strong> antes de añadir cualquier miembro
+     </mat-error>
+      <form [formGroup]="mForm">
+        <div class="d-flex align-items-center justify-content-center">
+          <img class="card img-rounded mx-1" [src]="imgSrc" width="70%" height="325px">
+        </div>
+        <div class="row my-3 form-group">
+            <label class="label-file">Foto de Miembro</label>
+            <input type="file" accept="image/*" class="form-control input-file" placeholder="Selecciona un archivo" (change)="showPreview($event)"
+            formControlName="picture" [ngClass]="{'is-invalid': isSent && f.picture.errors}"/>
+        </div>
+        <div class="row form-group">
+          <mat-error *ngIf="isSent && f.picture.errors" >
+            Debes seleccionar una <strong>foto</strong>
+           </mat-error>
+        </div>
         <div class="row my-3">
 
             <mat-form-field>
@@ -56,17 +73,7 @@
             </mat-error>
 
         </div>
-        <div class="row my-3">
 
-          <mat-form-field>
-            <mat-label>Sube una Foto</mat-label>
-            <input matInput type="text" formControlName="picture" [ngClass]="{'is-invalid': isSent && f.picture.errors}">
-          </mat-form-field>
-          <mat-error *ngIf="isSent && f.picture.errors">
-            Introduce un archivo <strong>válido</strong>
-          </mat-error>
-
-      </div>
         <div class="row my-3">
 
           <mat-form-field>
@@ -79,8 +86,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success" (click)="modal.close('Save click')">Guardar</button>
-
+        <button type="button" class="btn btn-success" (click)="onSubmit()">Guardar</button>
       </div>
       </form>
     </div>

@@ -15,7 +15,7 @@
 }
 
 
-.profile-pic{
+.profile-pic {
   position: relative;
   width: 100%;
   max-height: 400px;
@@ -216,18 +216,39 @@
     background-color: $bgColor;
   }
 
+  .profile-img-edit{
+    opacity: 0.4;
+  }
+
+  .input-file{
+   color: $cian;
+   background-color: $not-black;
+
+   &:hover{
+    color: $not-black;
+    background-color: $cian;
+   }
+  }
+
+  .label-file{
+    color: $cian;
+   }
+
+  fa-icon {
+
+    cursor: pointer;
+    font-size: 0.7em;
+    color: #ffff;
+    &:hover{
+      color: $g-red;
+    }
+  }
+
+
+
   .modal-header{
     color: #ffff;
 
-    fa-icon {
-
-      cursor: pointer;
-      font-size: 0.7em;
-      color: #ffff;
-      &:hover{
-        color: $g-red;
-      }
-    }
   }
 
   hr {

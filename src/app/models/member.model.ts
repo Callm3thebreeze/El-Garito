@@ -1,6 +1,6 @@
 export class Member {
 
-  _id?: string;
+  _id: string="";
   name?: string;
   picture?: string;
   role?: string;

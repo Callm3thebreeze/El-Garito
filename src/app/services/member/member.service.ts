@@ -20,4 +20,12 @@ export class MemberService {
       )
   }
 
+  deleteMember(id: string){
+    return this.httpClient.delete(`${environment.apiUrl}/artist/member/${id}`).pipe(
+        catchError(error => {
+          return throwError(error);
+        })
+      )
+  }
+
 }

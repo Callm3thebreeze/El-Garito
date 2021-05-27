@@ -1,6 +1,6 @@
 
 export class Album {
-  _id?: string;
+  _id: string = ""
   name?: string;
   releaseDate?: Date;
   picture?: string;

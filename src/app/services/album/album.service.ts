@@ -18,7 +18,14 @@ saveAlbum(album: Album){
         return throwError(error);
       })
     )
+}
 
+deleteAlbum(id: string){
+  return this.httpClient.delete(`${environment.apiUrl}/artist/album/${id}`).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    )
 }
 
 }

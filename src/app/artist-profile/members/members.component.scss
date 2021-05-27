@@ -64,6 +64,20 @@
   }
 }
 
+.input-file{
+  color: $cian;
+  background-color: $not-black;
+
+  &:hover{
+   color: $not-black;
+   background-color: $cian;
+  }
+ }
+ .label-file{
+  color: $cian;
+ }
+
+
 fa-icon {
 
   cursor: pointer;

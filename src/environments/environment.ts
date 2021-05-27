@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:3000"
+  apiUrl: "http://localhost:3000",
+  firebaseConfig : {
+    apiKey: "AIzaSyBmnGqcchmOOfmxGNFs98P7lYTMSTYyYdg",
+    authDomain: "garito-185a9.firebaseapp.com",
+    projectId: "garito-185a9",
+    storageBucket: "garito-185a9.appspot.com",
+    messagingSenderId: "987110827945",
+    appId: "1:987110827945:web:677b47abb3b063fb0806b8"
+  }
 };
 
 /*
@@ -14,4 +22,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

@@ -11,20 +11,20 @@
 
     <div class="col-12" *ngFor="let album of albums; index as albumIndex">
 
-      <fa-icon  [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
+      <fa-icon (click)="removeAlbum(album._id)" [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
 
       <div class="person">
         <div class="row">
           <div class="col-md-5">
-            <img (click)="album.show = !album.show" src={{album.picture}} alt="Un Disco">
+            <img [src]="album.picture" alt="Un Personaje" *ngIf="album.picture" (click)="album.show = !album.show">
+            <img src="../assets/img/no-image.jpg" alt="Un Personaje" *ngIf="album.picture == ''" (click)="album.show = !album.show">
           </div>
           <div class="info col-md-7">
             <div class="name">
               {{album.name}}
-
             </div>
             <div class="date">
-              {{album.releaseDate}}
+              {{album.releaseDate | date:'shortDate'}}
             </div>
             <div class="date">
               <p>{{album.songs?.length}} canciones</p>
@@ -61,16 +61,18 @@
             </mat-error>
 
         </div>
-        <div class="row my-3">
-
-          <mat-form-field>
-            <mat-label>Portada</mat-label>
-            <input matInput type="text" formControlName="picture" [ngClass]="{'is-invalid': isSent && f.picture.errors}">
-          </mat-form-field>
-          <mat-error *ngIf="isSent && f.picture.errors">
-            Introduce un archivo <strong>válido</strong>
-          </mat-error>
-
+        <div class="d-flex align-items-center justify-content-center">
+          <img class="card img-rounded mx-1" [src]="imgSrc" width="100%" height="250px">
+        </div>
+        <div class="row my-3 form-group">
+          <label class="label-file">Portada</label>
+          <input type="file" accept="image/*" class="form-control input-file" placeholder="Selecciona un archivo" (change)="showPreview($event)"
+          formControlName="picture" [ngClass]="{'is-invalid': isSent && f.picture.errors}"/>
+      </div>
+      <div class="row form-group">
+        <mat-error *ngIf="isSent && f.picture.errors" >
+          Debes seleccionar una <strong>foto</strong>
+         </mat-error>
       </div>
         <div class="row my-3">
             <div class="d-flex">
@@ -105,7 +107,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="[modal.close('Save click'), onSubmit()]">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="onSubmit()">Guardar</button>
 
       </div>
       </form>

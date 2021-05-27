@@ -30,6 +30,16 @@ export class UserService {
     )
   }
 
+  updateProfilePic(profilePic: string): Observable<any> {
+
+    return this.httpClient.put(`${environment.apiUrl}/artist/profilepic`, {profilePic:profilePic}).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    )
+  }
+
+
   getUser(username: string): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/${username}`).pipe(
       catchError(error => {

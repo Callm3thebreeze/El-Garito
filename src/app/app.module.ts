@@ -1,3 +1,5 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from './../environments/environment';
 import { InfoComponent } from './artist-profile/info/info.component';
 import { ContactComponent } from './artist-profile/contact/contact.component';
 import { LoginComponent } from './login/login.component';
@@ -6,7 +8,6 @@ import { DiscographyComponent } from './artist-profile/discography/discography.c
 import { MembersComponent } from './artist-profile/members/members.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,9 @@ import {MatInputModule} from '@angular/material/input';
 import { MatNativeDateModule, MatOptionModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
 import { EmailFormComponent } from './email-form/email-form.component';
-
+import { AngularFireModule } from '@angular/fire'
+import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireDatabaseModule} from '@angular/fire/database'
 
 
 @NgModule({
@@ -65,7 +68,9 @@ import { EmailFormComponent } from './email-form/email-form.component';
     MatInputModule,
     ReactiveFormsModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

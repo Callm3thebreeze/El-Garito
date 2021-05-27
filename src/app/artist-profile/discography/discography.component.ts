@@ -1,3 +1,5 @@
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthGuardService } from './../../services/auth/auth-guard.service';
 import { UserService } from './../../services/user.service';
 import { AlbumService } from './../../services/album/album.service';
@@ -26,8 +28,11 @@ export class DiscographyComponent implements OnInit {
   editIcon = faEdit
   removeIcon = faTrash
   mForm: FormGroup
+  imgSrc: string = "../assets/img/no-image.jpg"
+  selectedImg: any = null
   isSent: boolean = false
   canEdit : boolean = false
+  modalRef: any
 
   constructor(private modal: NgbModal,
     private router: Router,
@@ -35,57 +40,80 @@ export class DiscographyComponent implements OnInit {
     private albumService: AlbumService,
     private userService: UserService,
     private guardService: AuthGuardService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private storage: AngularFireStorage) {
       this.mForm = this.fb.group({
         name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s]+[a-zA-Z0-9]$/)]],
         releaseDate: ['', [Validators.required, Validators.pattern(/^\d{4}([./-])\d{2}\1\d{2}$/)]],
-        picture: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9][a-zA-Z0-9-_\.]+\.[a-zA-Z0-9]{2,4}/)]]
+        picture: ['', [Validators.required]]
        })
      }
 
   openModalForm(content: TemplateRef<any>){
-    this.modal.open(content)
+    this.modalRef = this.modal.open(content)
   }
 
   get f() {
     return this.mForm.controls
   }
 
+  showPreview(event: any){
+
+    if(event.target.files && event.target.files[0]){
+      const reader = new FileReader()
+      reader.onload = (el:any) => this.imgSrc = el.target.result
+      reader.readAsDataURL(event.target.files[0])
+      this.selectedImg = event.target.files[0]
+    } else {
+      this.imgSrc = "../assets/img/no-image.jpg"
+      this.selectedImg = null
+    }
+
+  }
+
   onSubmit() {
 
     this.isSent = true
-
-    console.log("Enviar form");
-
     if (this.mForm.invalid) {
-      console.log(this.f.releaseDate.errors)
       return
     }
-    /*Hacer llamada al service
-    Hacer dos servicios: user, people
-    llamar al servicio de login y en la respuesta guardar en el localStorage el token y redirigir al DASHBOARD
-    */
+    this.uploadToFireStorage()
+ }
 
-    const album: Album = new Album()
+ uploadToFireStorage(){
+  let filePath = `discography/${this.selectedImg.name}_${new Date().getTime()}`
+  const fileRef = this.storage.ref(filePath)
+  this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
+    finalize(()=>{
+        fileRef.getDownloadURL().subscribe((url:any)=>{
+          this.updateDiscography(url)
+        })
+    })
+  ).subscribe()
 
-    album.name = this.f.name?.value
-    album.picture = this.f.picture?.value
-    album.songs = this.songs
-    album.releaseDate = this.f.releaseDate?.value
+}
 
-    console.log(album)
+updateDiscography(urlMemberPic:string){
 
-    this.albumService.saveAlbum(album).subscribe((data: any) => {
-      this.songs = []
-      this.ngOnInit()
-      console.log(data)
-    },
-      error => {
-        console.log("Error:", error);
-      }
-    );
+  const album: Album = new Album()
 
+  album.name = this.f.name?.value
+  album.picture = urlMemberPic
+  album.songs = this.songs
+  album.releaseDate = this.f.releaseDate?.value
 
+  console.log(album)
+
+  this.albumService.saveAlbum(album).subscribe((data: any) => {
+    this.songs = []
+    this.modalRef.close()
+    this.loadData()
+    console.log(data)
+  },
+    error => {
+      console.log("Error:", error);
+    }
+  );
  }
 
   addSong() {
@@ -101,6 +129,15 @@ export class DiscographyComponent implements OnInit {
     this.songs.splice(index,1)
   }
 
+  removeAlbum(album_id : string){
+
+    this.albumService.deleteAlbum(album_id).subscribe((data:any)=>{
+      this.songs = []
+      this.loadData()
+    })
+
+  }
+
 
   addShowAttr(){
     const albums = this.albums.reduce((acc: Album[], album: Album)=>{
@@ -111,7 +148,6 @@ export class DiscographyComponent implements OnInit {
 
     },[])
     this.albums = albums
-    console.log(this.albums)
   }
 
   loadData(){
@@ -126,16 +162,13 @@ export class DiscographyComponent implements OnInit {
       this.userService.getUser(username).subscribe((data: any) => {
         this.albums = data.discography as Album[]
         this.addShowAttr()
-        console.log(this.albums)
       }, error => {
         console.log("Error:", error);
       })
     } else {
       console.log("No existe username")
     }
-
   }
-
   ngOnInit() {
     this.loadData()
   }
