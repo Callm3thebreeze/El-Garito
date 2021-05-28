@@ -1,9 +1,9 @@
+import { AuthGuardService } from './../services/auth/auth-guard.service';
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {Register} from '../models/register.model';
-import { AuthService } from '../services/auth/auth.service';
 import { cities } from '../models/citiesList';
 
 @Component({
@@ -24,20 +24,27 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private userService: UserService,
-    private authService: AuthService) {
+    private guardService: AuthGuardService) {
 
       this.mForm = this.fb.group({
-        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]+[a-zA-Z0-9]$/)]],
+        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z_\-.][a-zA-Z0-9_\-.]+[a-zA-Z0-9_\-.]$/)]],
         password: ['', [Validators.required, Validators.pattern(/^[a-zA-z][a-z0-9]+[a-z0-9]$/)]],
         confirm_password: ['', [Validators.required, Validators.pattern(/^[a-zA-z][a-z0-9]+[a-z0-9]$/)]],
-        artist_name: ['', [Validators.required, Validators.pattern(/^[a-zA-z][a-zA-z0-9\s]+[a-z0-9]$/)]],
-        email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/)]],
-        location: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z]+[a-zA-Z]$/)]]
+        artist_name: ['', [Validators.required, Validators.pattern(/^[a-zA-záéíóúÁÉÍÓÚñÑ][a-zA-z0-9áéíóúÁÉÍÓÚñÑ\s'\-]+[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]$/)]],
+        email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+        location: ['', [Validators.required, Validators.pattern(/^[a-zA-záéíóúÁÉÍÓÚñÑ][a-zA-z0-9áéíóúÁÉÍÓÚñÑ\s'\-]+[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]$/)]]
       })
 
      }
 
-  ngOnInit(){}
+     ngOnInit(): void {
+      if(this.guardService.canActivate()){
+        const username = localStorage.getItem("username")
+        if(username) {
+          this.router.navigate(['/'+username])
+        }
+      }
+    }
 
   get f() {
     return this.mForm.controls

@@ -17,29 +17,48 @@
         </div>
 
     </div>
+    <form [formGroup]="mForm" (ngSubmit)="onSubmit()">
     <div class="col-12 col-md-6">
 
         <div class="row">
           <div class="col-6 g-0 name-col">
             <label class="label-1" for="inputname">Nombre</label>
-              <input type="text" id="inputname" class="form-control" placeholder="">
+              <input type="text" id="inputname" class="form-control" formControlName="name" placeholder=""
+              [ngClass]="{'is-invalid': isSent && f.name.errors}">
+              <mat-error  class="error-messages2" *ngIf="isSent && f.name.errors">
+                Nombre es <strong>requerido</strong>
+              </mat-error>
           </div>
           <div class="col-6 g-0 email-col">
             <label class="label-1" for="inputemail">e-mail</label>
-              <input type="text" id="inputemail" class="form-control" placeholder="">
+              <input type="email" id="inputemail" formControlName="email" class="form-control" placeholder=""
+              [ngClass]="{'is-invalid': isSent && f.email.errors}">
+              <mat-error class="error-messages2" *ngIf="isSent && f.email.errors">
+                Email es <strong>requerido</strong>
+              </mat-error>
+
           </div>
         </div>
 
         <div class="row">
           <label for="inputsubject">Asunto</label>
-            <input type="text" id="inputsubject" class="form-control" placeholder="">
+            <input type="text" id="inputsubject" class="form-control" formControlName="subject"
+            [ngClass]="{'is-invalid': isSent && f.subject.errors}"placeholder="">
+            <mat-error class="error-messages1" *ngIf="isSent && f.subject.errors">
+              Asunto es <strong>requerido</strong>
+            </mat-error>
 
           <label for="inputmessage">Mensaje</label>
-            <textarea type="text" id="inputmessage" class="form-control" rows="6" placeholder=""></textarea>
+            <textarea type="text" id="inputmessage" class="form-control" formControlName="message" rows="6"
+            [ngClass]="{'is-invalid': isSent && f.message.errors}" placeholder=""></textarea>
+            <mat-error class="error-messages1" *ngIf="isSent && f.message.errors">
+              Mensaje es <strong>requerido</strong>
+            </mat-error>
 
-            <button type="button" class="btn">Enviar</button>
+            <button type="submit" class="btn">Enviar</button>
         </div>
 
     </div>
+  </form>
   </div>
 </div>

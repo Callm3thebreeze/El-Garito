@@ -21,16 +21,22 @@ export class SearchComponent implements OnInit {
   artistName : string = ""
   genre: string = ""
   location: string = ""
+  notUsers: boolean = false
   artists : Artist[] = []
 
   loadData(){
 
     this.userService.getUsers(this.artistName, this.genre, this.location).subscribe((data:any)=>{
-      console.log(data)
       this.artists = []
-      data.forEach((user:any) => {
-         this.formatArtist(user)
-      });
+      if(data == 'not users found' || data == null){
+        this.notUsers = true
+        this.router.navigate(['/search/'+this.artistName])
+      } else {
+        this.notUsers = false
+        data.forEach((user:any) => {
+          this.formatArtist(user)
+       });
+      }
     })
   }
 
@@ -38,26 +44,20 @@ export class SearchComponent implements OnInit {
 
     const newUser = new Artist()
     newUser.name = data.artist_name
-    newUser.picture = "https://www.segundopremio.com/wp-content/uploads/2017/11/Los-Estanques.jpg"
+    newUser.picture = (data.profile_pic && data.profile_pic!="")? data.profile_pic : "../assets/img/no-image.jpg"
     newUser.username = data.username
     this.artists.push(newUser)
   }
 
   getUsers(){
     this.loadData()
-    console.log({artist:this.artistName})
+    if(this.artistName && this.artistName != "")
+    this.router.navigate(['/search/'+this.artistName])
     //REVISAR
    /*  this.router.navigate(['/search/'+this.artistName]) */
   }
 
   ngOnInit() {
-
-    this.router.events.subscribe(event=>{
-      if(event instanceof NavigationEnd){
-       this.loadData()
-      }
-    })
-
 
     this.activatedRoute.params.subscribe(params => {
 
@@ -70,8 +70,5 @@ export class SearchComponent implements OnInit {
     this.loadData()
 
     })
-
-
   }
-
 }

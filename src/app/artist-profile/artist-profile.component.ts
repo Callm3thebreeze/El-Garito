@@ -114,8 +114,16 @@ export class ArtistProfileComponent implements OnInit {
        console.log(data)
        this.ngOnInit()
      })
+  }
 
-
+  resetForm(){
+    this.profilePicForm.reset()
+    this.profilePicForm.setValue({
+      profilePic: ''
+    })
+    this.imgSrc = "../assets/img/no-image.jpg"
+    this.selectedImg = null
+    this.isSent =false
   }
 
   sendData(){
@@ -177,7 +185,7 @@ export class ArtistProfileComponent implements OnInit {
   ngOnInit() {
 
     //localhost:4200/
-
+    this.resetForm()
     this.activatedRoute.params.subscribe(params => {
       const usernameLS = localStorage.getItem("username")
       let username = params['username']

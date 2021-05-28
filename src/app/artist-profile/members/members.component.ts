@@ -40,8 +40,8 @@ export class MembersComponent implements OnInit {
     private activatedRoute : ActivatedRoute,
     private storage: AngularFireStorage) {
       this.mForm = this.fb.group({
-        name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s]+[a-zA-Z0-9]$/)]],
-        role: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s,\.]+[a-zA-Z0-9]$/)]],
+        name: ['', [Validators.required, Validators.pattern(/^[a-zA-záéíóúÁÉÍÓÚñÑ][a-zA-z0-9áéíóúÁÉÍÓÚñÑ\s'\-]+[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]$/)]],
+        role: ['', [Validators.required, Validators.pattern(/^[a-zA-záéíóúÁÉÍÓÚñÑ][a-zA-z0-9áéíóúÁÉÍÓÚñÑ\s'\-]+[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]$/)]],
         picture: ['', [Validators.required]]
        })
      }
@@ -119,11 +119,24 @@ export class MembersComponent implements OnInit {
   this.memberService.deleteMember(member_id).subscribe((data:any)=>{
     this.ngOnInit()
   })
-
 }
+
+resetForm(){
+  this.mForm.reset()
+  this.mForm.setValue({
+    name:'',
+    role: '',
+    picture: ''
+  })
+  this.imgSrc = "../assets/img/no-image.jpg"
+  this.selectedImg = null
+  this.isSent =false
+}
+
 
   ngOnInit() {
 
+    this.resetForm()
     let username = this.activatedRoute.parent?.snapshot.params["username"]
     const usernameLS = localStorage.getItem("username")
     if (usernameLS && usernameLS == username && this.guardService.canActivate()) {

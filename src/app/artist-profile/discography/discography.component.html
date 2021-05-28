@@ -11,7 +11,7 @@
 
     <div class="col-12" *ngFor="let album of albums; index as albumIndex">
 
-      <fa-icon (click)="removeAlbum(album._id)" [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
+      <fa-icon (click)="removeAlbum(album._id)" *ngIf="canEdit" [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
 
       <div class="person">
         <div class="row">

@@ -6,15 +6,16 @@
 
     <div class="row">
       <div class="selector col-12 col-md-6">
-
-        <select (change)="getUsers()" required name="provincia" class="filter form-control" [(ngModel)]="location">
-          <option value="">--- Todas las Provincias ---</option>
+        <label class="label-select" for="provincias">Selecciona una provincia</label>
+        <select (change)="getUsers()" required name="provincia" class="filter form-control" [(ngModel)]="location" aria-placeholder="Selecciona una provincia">
+          <option value="all">--- Todas las Provincias ---</option>
           <option *ngFor="let provincia of provincias">{{provincia}}</option>
         </select>
-        <select (change)="getUsers()" required name="genero" class="filter form-control" [(ngModel)]="genre">
+      <!--   <select (change)="getUsers()" required name="genero" class="filter form-control" [(ngModel)]="genre">
           <option value="">-- Todos los Géneros </option>
           <option *ngFor="let genre of genres">{{genre}}</option>
-        </select>
+        </select> -->
+        <label class="label-select" for="provincias">Busca tu artista favorito!</label>
         <input type="text" [(ngModel)]="artistName" class="filter form-control" placeholder="Nombre de artista">
         <button (click)="getUsers()" type="button" class="btn">¡Dale!</button>
       </div>
@@ -26,6 +27,7 @@
 
     <div class="results row">
 
+      <div *ngIf="!notUsers">
       <div *ngFor="let artist of artists" class="col-sm-6 col-md-4">
 
         <a [routerLink]="['/', artist.username]" routerLinkActive="router-link-active" ><div class="artist-card" style="background-image: url('{{artist.picture}}'); background-size: cover;">
@@ -34,5 +36,10 @@
         </a>
 
     </div>
+  </div>
+
+  <div class="not-users" *ngIf="notUsers">
+     No se han encontrado coincidencias.
+  </div>
 
 </div>

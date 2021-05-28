@@ -1,7 +1,7 @@
+import { AuthGuardService } from './../services/auth/auth-guard.service';
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 import {Login} from '../models/login.model';
 
@@ -21,16 +21,23 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private userService: UserService,
-    private authService: AuthService) {
+    private guardService: AuthGuardService) {
 
       this.mForm = this.fb.group({
-        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]+[a-zA-Z0-9]$/)]],
+        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z_\-.][a-zA-Z0-9_\-.]+[a-zA-Z0-9_\-.]$/)]],
         password: ['', [Validators.required, Validators.pattern(/^[a-zA-z][a-z0-9]+[a-z0-9]$/)]]
       })
 
      }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if(this.guardService.canActivate()){
+      const username = localStorage.getItem("username")
+      if(username) {
+        this.router.navigate(['/'+username])
+      }
+    }
+  }
 
   get f() {
     return this.mForm.controls

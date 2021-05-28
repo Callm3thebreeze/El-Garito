@@ -79,17 +79,15 @@ export class InfoComponent implements OnInit {
     if (usernameLS && usernameLS == username && this.guardService.canActivate()) {
       this.canEdit = true
     }
-
-    if (username) {
+    console.log(username)
+    if (username && username!="search" && username!="404") {
       this.userService.getUser(username).subscribe((data: any) => {
         if(data.info){
           this.bindData(data)
          } else {
           this.loadInfo()
          }
-         console.log(this.info)
       }, error => {
-        console.log("Error:", error);
       })
     } else {
       console.log("No existe username")
@@ -102,7 +100,9 @@ export class InfoComponent implements OnInit {
     this.router.events.subscribe(event=>{
        if(event instanceof NavigationEnd){
         this.loadData()
-        if(event.url =="/404") this.router.navigate(['/404'])
+         if(event.url =="/404"){
+           this.router.navigate(['/search'])
+         }
        }
      })
 
@@ -110,7 +110,6 @@ export class InfoComponent implements OnInit {
 
   showEditGenres(){
     this.genresHidden = !this.genresHidden
-    console.log(this.genresHidden)
   }
 
   loadInfo(){
@@ -150,7 +149,6 @@ export class InfoComponent implements OnInit {
     this.genresHidden = true
 
     this.infoService.updateInfo(info).subscribe((data:any) => {
-      console.log(data.info)
       this.loadData()
     })
   }

@@ -43,7 +43,7 @@ export class DiscographyComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private storage: AngularFireStorage) {
       this.mForm = this.fb.group({
-        name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9\s]+[a-zA-Z0-9]$/)]],
+        name: ['', [Validators.required, Validators.pattern(/^[a-zA-záéíóúÁÉÍÓÚñÑ][a-zA-z0-9áéíóúÁÉÍÓÚñÑ\s'\-]+[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]$/)]],
         releaseDate: ['', [Validators.required, Validators.pattern(/^\d{4}([./-])\d{2}\1\d{2}$/)]],
         picture: ['', [Validators.required]]
        })
@@ -75,6 +75,7 @@ export class DiscographyComponent implements OnInit {
 
     this.isSent = true
     if (this.mForm.invalid) {
+      this.songs = []
       return
     }
     this.uploadToFireStorage()
@@ -111,6 +112,7 @@ updateDiscography(urlMemberPic:string){
     console.log(data)
   },
     error => {
+      this.songs = []
       console.log("Error:", error);
     }
   );
@@ -138,6 +140,18 @@ updateDiscography(urlMemberPic:string){
 
   }
 
+  resetForm(){
+    this.mForm.reset()
+    this.mForm.setValue({
+      name:'',
+      releaseDate: '',
+      picture: ''
+    })
+    this.imgSrc = "../assets/img/no-image.jpg"
+    this.selectedImg = null
+    this.isSent =false
+  }
+
 
   addShowAttr(){
     const albums = this.albums.reduce((acc: Album[], album: Album)=>{
@@ -152,6 +166,7 @@ updateDiscography(urlMemberPic:string){
 
   loadData(){
 
+    this.resetForm()
     let username = this.activatedRoute.parent?.snapshot.params["username"]
     const usernameLS = localStorage.getItem("username")
     if (usernameLS && usernameLS == username && this.guardService.canActivate()) {

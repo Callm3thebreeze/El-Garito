@@ -21,7 +21,11 @@ const routes: Routes = [
  { path: "home", component: CoverComponent},
  { path: "login", component: LoginComponent},
  { path: "signup", component: RegisterComponent},
- { path: "search/:artistname", component: SearchComponent},
+ { path: "search", component: SearchComponent, children:
+ [
+   {path:":artistname", component:SearchComponent }
+ ]
+ },
  { path: "events", component: ConcertsComponent},
  { path: "email", component: EmailFormComponent},
  { path: ":username", component: ArtistProfileComponent, children:

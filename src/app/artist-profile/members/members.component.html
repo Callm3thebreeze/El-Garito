@@ -13,7 +13,7 @@
 
     <div class="col-12" *ngFor="let member of members">
 
-      <fa-icon (click)="removeMember(member._id)" [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
+      <fa-icon (click)="removeMember(member._id)" *ngIf="canEdit" [icon]="removeIcon" class="remove-icon" size=2x></fa-icon>
 
       <div class="person">
         <div class="row">

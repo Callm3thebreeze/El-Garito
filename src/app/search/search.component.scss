@@ -6,10 +6,20 @@
   justify-items: center;
   background-color: $bgColor;
   font-family: 'Roboto', sans-serif;
-  color: white;
+  color: #fff;
   text-decoration: none;
   text-align: left;
 
+}
+.label-select{
+  color: #fff;
+  font-size: 1.2rem
+}
+
+.not-users {
+  color: $cian;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .main-box {
