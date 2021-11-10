@@ -1,27 +1,13 @@
 # ElGarito
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ Frontend de El Garito, proyecto final del curso de desarrollo web full-stack impartido por la Escuela de Organización Industrial EOI.
+ 
+ El Garito reproduce una plartaforma web para artistas musicales emergentes o consolidados dónde se reúne toda la información relativa a los mismos y a sus eventos.
+ 
+ El front se ha llevado a cabo con Angular, usando TypeScript, HTML, SCSS y Bootstrap.
+ Se han empleado también componentes de Angular Material y se ha probado el uso de iconografía con Fontawesome.
+ 
+ El diseño de la página se ha llevado a cabo con Figma y tanto la estructura como la ilustraciones de la web son completamente originales, elaboradas a mano, digitalizadas con illustrator y retocadas en Figma.
+ 
+ Es un primer proyecto al que se le han invertido muchas horas y cario, aunque cómo primer proyecto web posee claras carencias en aspectos de arquitectura, buenas prácticas, código limpio, accesibilidad...
+ 
+ Proyecto realizado por Jesús Villar Jiménez y Edu Gutierrez Navarro.
