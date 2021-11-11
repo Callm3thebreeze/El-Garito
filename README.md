@@ -11,3 +11,5 @@
  Es un primer proyecto al que se le han invertido muchas horas y cario, aunque cómo primer proyecto web posee claras carencias en aspectos de arquitectura, buenas prácticas, código limpio, accesibilidad...
  
  Proyecto realizado por Jesús Villar Jiménez y Edu Gutierrez Navarro.
+
+[ilustraciones.pdf](https://github.com/Callm3thebreeze/El-Garito/files/7516658/ilustraciones.pdf)
